@@ -1,0 +1,14 @@
+ray==2.59.0
+pandas==2.3.3
+scikit-learn==1.7.2
+mlflow==3.10.1
+dvc==3.67.1
+fastapi==0.119.0
+uvicorn==0.37.0
+python-multipart==0.0.20
+streamlit==1.51.0
+requests==2.32.5
+prometheus-client==0.23.1
+matplotlib==3.10.7
+pytest==8.4.2
+httpx==0.28.1

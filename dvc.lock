@@ -1,0 +1,54 @@
+schema: '2.0'
+stages:
+  ingest:
+    cmd: python src/ingest.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 8326affef8d90e6d6910a5b45cf16cb0.dir
+      size: 201071695
+      nfiles: 3
+    - path: requirements.lock.txt
+      hash: md5
+      md5: 176cccf39caff1366ad95e8ab150b464
+      size: 3012
+    - path: src/ingest.py
+      hash: md5
+      md5: 0f49516459b530b9845a93cdbe2c6cf1
+      size: 8749
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: db73916e2e9ea533393707d60f5d6931.dir
+      size: 438673707
+      nfiles: 4
+    - path: reports/ingestion_summary.json
+      hash: md5
+      md5: 33c269b41f0dd880d2ad1b3cfd0e6f47
+      size: 2227
+  validate_data:
+    cmd: python -m pytest tests/test_ingest.py -q 
+      --junitxml=reports/ingestion_tests.xml
+    deps:
+    - path: data/processed
+      hash: md5
+      md5: db73916e2e9ea533393707d60f5d6931.dir
+      size: 438673707
+      nfiles: 4
+    - path: requirements.lock.txt
+      hash: md5
+      md5: 176cccf39caff1366ad95e8ab150b464
+      size: 3012
+    - path: src/ingest.py
+      hash: md5
+      md5: 0f49516459b530b9845a93cdbe2c6cf1
+      size: 8749
+    - path: tests/test_ingest.py
+      hash: md5
+      md5: 77b0337d171893f8a7dd9203fab6aee0
+      size: 3868
+    outs:
+    - path: reports/ingestion_tests.xml
+      hash: md5
+      md5: d0d991ebc6936d1987479fd2471772f4
+      size: 1712

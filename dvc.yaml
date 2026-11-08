@@ -1,0 +1,23 @@
+stages:
+  ingest:
+    cmd: python src/ingest.py
+    deps:
+      - src/ingest.py
+      - requirements.lock.txt
+      - data/raw
+    outs:
+      - data/processed
+    metrics:
+      - reports/ingestion_summary.json:
+          cache: false
+
+  validate_data:
+    cmd: python -m pytest tests/test_ingest.py -q --junitxml=reports/ingestion_tests.xml
+    deps:
+      - src/ingest.py
+      - tests/test_ingest.py
+      - requirements.lock.txt
+      - data/processed
+    outs:
+      - reports/ingestion_tests.xml:
+          cache: false

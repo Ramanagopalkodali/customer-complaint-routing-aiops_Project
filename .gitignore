@@ -12,3 +12,5 @@ artifacts/*
 !artifacts/.gitkeep
 mlruns/
 mlflow.db
+
+logs/

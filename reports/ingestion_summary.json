@@ -1,0 +1,85 @@
+{
+  "deduplication": "complaint ID and case-insensitive whitespace-normalized text",
+  "duration_seconds": 24.2,
+  "input_rows_per_second": 93202.47,
+  "sources": {
+    "cfpb_2024_04_07.zip": {
+      "candidate_rows": 265014,
+      "excluded_product": 19211,
+      "input_rows": 839903,
+      "missing_narrative": 555678
+    },
+    "cfpb_2024_08_10.zip": {
+      "candidate_rows": 221022,
+      "excluded_product": 15823,
+      "input_rows": 824514,
+      "missing_narrative": 587669
+    },
+    "cfpb_2024_11_12.zip": {
+      "candidate_rows": 148269,
+      "excluded_product": 11241,
+      "input_rows": 591058,
+      "missing_narrative": 431548
+    }
+  },
+  "splits": {
+    "future": {
+      "candidate_rows": 148269,
+      "class_counts": {
+        "bank_account": 5632,
+        "credit_card": 5233,
+        "credit_reporting": 57390,
+        "debt_collection": 9080,
+        "mortgage": 2023
+      },
+      "date_max": "2024-12-31",
+      "date_min": "2024-11-01",
+      "duplicates_removed": 68911,
+      "output_rows": 79358
+    },
+    "test": {
+      "candidate_rows": 76504,
+      "class_counts": {
+        "bank_account": 2615,
+        "credit_card": 2658,
+        "credit_reporting": 27833,
+        "debt_collection": 4688,
+        "mortgage": 1012
+      },
+      "date_max": "2024-10-31",
+      "date_min": "2024-10-01",
+      "duplicates_removed": 37698,
+      "output_rows": 38806
+    },
+    "train": {
+      "candidate_rows": 265014,
+      "class_counts": {
+        "bank_account": 9630,
+        "credit_card": 10524,
+        "credit_reporting": 99703,
+        "debt_collection": 14576,
+        "mortgage": 3901
+      },
+      "date_max": "2024-07-31",
+      "date_min": "2024-04-01",
+      "duplicates_removed": 126680,
+      "output_rows": 138334
+    },
+    "validation": {
+      "candidate_rows": 144518,
+      "class_counts": {
+        "bank_account": 4940,
+        "credit_card": 5261,
+        "credit_reporting": 53795,
+        "debt_collection": 8161,
+        "mortgage": 2120
+      },
+      "date_max": "2024-09-30",
+      "date_min": "2024-08-01",
+      "duplicates_removed": 70241,
+      "output_rows": 74277
+    }
+  },
+  "status": "PASS",
+  "throughput_scope": "whole pipeline including Ray startup"
+}

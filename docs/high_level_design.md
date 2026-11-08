@@ -37,3 +37,14 @@ at 94.66% accuracy. Validation precision targets are not future guarantees.
 Debt collection has low automatic coverage. Human review is essential.
 The system supports five categories and cannot reliably identify every
 out-of-domain complaint.
+
+## High-level component diagram
+
+```mermaid
+flowchart TD
+    Agent["Support agent"] --> Frontend["Frontend container"]
+    Frontend -->|"REST requests"| Backend["Backend container"]
+    Backend --> Inference["Portable MLflow model and routing policy"]
+    Backend --> Console["DVC state and saved pipeline evidence"]
+    Backend --> Output["Prediction responses without complaint text"]
+```

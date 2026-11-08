@@ -34,9 +34,31 @@ Prediction fields:
 Unexpected inference failures return HTTP 500 with a generic error message.
 Detailed errors go to logs/backend.log without logging complaint text.
 
-The model loads once at startup using MLflow. The policy run ID and source
-model hash are checked. Text with no recognized vocabulary requires review.
+The portable MLflow model loads once at startup. Bundle file hashes,
+policy provenance and manifest identity are checked. Text with no recognized vocabulary requires review.
 A recognized vocabulary does not prove a complaint belongs to the supported
 domain; confidence and routing precision are not guarantees.
 
 The backend saves its OpenAPI specification to reports/backend_openapi.json.
+
+## Pipeline endpoint
+
+GET /pipeline
+- No request body.
+- Returns HTTP 200 with a JSON evidence snapshot.
+- generated_at: snapshot timestamp.
+- workspace_status: up_to_date, changes_detected or unavailable.
+- workspace_changes: DVC change details, or null if unavailable.
+- stages: pipeline stage names.
+- diagram_png_base64: PNG diagram encoded as base64.
+- ingestion: saved ingestion counts, splits and throughput.
+- models and selected_model: saved validation comparison.
+- test: saved held-out evaluation.
+- tests: saved XML report summaries.
+- recorded_failures: available failure entries from pipeline logs.
+- missing_logs: names of unavailable pipeline logs.
+- note: explanation that evidence is saved rather than live task progress.
+
+The endpoint runs a fixed, read-only DVC status command with a timeout.
+It does not accept shell commands or start training.
+Unexpected snapshot failures return HTTP 500.

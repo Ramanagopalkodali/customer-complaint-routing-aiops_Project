@@ -2,8 +2,8 @@
 
 ```mermaid
 flowchart TD
-    User["Support agent"] --> UI["Streamlit frontend"]
-    UI -->|"Configurable REST calls"| API["FastAPI backend"]
+    User["Support agent"] --> UI["Streamlit frontend container"]
+    UI -->|"Configurable REST calls"| API["FastAPI backend container"]
     API --> Model["MLflow classifier"]
     API --> Policy["Routing thresholds"]
     API --> Reports["Pipeline reports and DVC status"]
@@ -27,4 +27,4 @@ flowchart TD
 - MLflow: records experiments, packaged models and evaluation results.
 - Reports: saved metrics, test outcomes and prediction responses without text.
 
-Docker packaging, monitoring and drift/retraining are subsequent stages.
+Docker packaging is implemented. Monitoring and drift/retraining are subsequent stages.

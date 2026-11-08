@@ -21,3 +21,16 @@ stages:
     outs:
       - reports/ingestion_tests.xml:
           cache: false
+
+  train:
+    cmd: python src/train.py
+    deps:
+      - src/train.py
+      - requirements.lock.txt
+      - data/processed/train.csv
+      - data/processed/validation.csv
+      - reports/ingestion_tests.xml
+    outs:
+      - artifacts/training
+      - reports/training:
+          cache: false

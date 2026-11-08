@@ -18,6 +18,10 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 
+from backend.metrics import (
+    REQUESTS, LATENCY, MODEL, record_predictions,
+)
+
 ROOT = Path(__file__).resolve().parents[1]
 TEAMS = {
     "bank_account": "Bank Accounts Support",
@@ -128,12 +132,14 @@ async def lifespan(app):
         ],
     )
     app.state.service = RoutingService()
+    MODEL.labels(app.state.service.version).set(1)
     (ROOT / "reports").mkdir(exist_ok=True)
     (ROOT / "reports/backend_openapi.json").write_text(
         json.dumps(app.openapi(), indent=2) + "\n"
     )
     logging.info("Backend ready; training run=%s", app.state.service.version)
     yield
+    MODEL.labels(app.state.service.version).set(0)
     del app.state.service
 
 
@@ -185,6 +191,7 @@ def health(request: Request):
 def predict(payload: SingleRequest, request: Request):
     results = request.app.state.service.predict([payload.text])
     save_results(results)
+    record_predictions(results)
     return results[0]
 
 
@@ -192,6 +199,7 @@ def predict(payload: SingleRequest, request: Request):
 def predict_batch(payload: BatchRequest, request: Request):
     results = request.app.state.service.predict(payload.texts)
     save_results(results)
+    record_predictions(results)
     return BatchResponse(results=results)
 
 
@@ -200,3 +208,37 @@ def pipeline():
     """Return workflow visualization and recorded execution evidence."""
     from backend.pipeline import pipeline_snapshot
     return pipeline_snapshot()
+
+
+
+@app.middleware("http")
+async def measure_requests(request: Request, call_next):
+    """Measure bounded route labels and include validation/server failures."""
+    import time
+
+    if request.url.path == "/metrics":
+        return await call_next(request)
+    started = time.perf_counter()
+    status = 500
+    try:
+        response = await call_next(request)
+        status = response.status_code
+        return response
+    finally:
+        route = getattr(request.scope.get("route"), "path", "unmatched")
+        method = request.method if request.method in {
+            "GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"
+        } else "OTHER"
+        REQUESTS.labels(method, route, str(status)).inc()
+        LATENCY.labels(route).observe(time.perf_counter() - started)
+
+
+@app.get("/metrics", include_in_schema=False)
+def metrics():
+    from fastapi import Response
+    from prometheus_client import CONTENT_TYPE_LATEST, generate_latest
+
+    return Response(
+        content=generate_latest(),
+        headers={"Content-Type": CONTENT_TYPE_LATEST},
+    )

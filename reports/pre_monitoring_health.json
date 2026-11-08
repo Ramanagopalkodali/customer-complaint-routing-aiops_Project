@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "service": "backend",
+      "status_code": 200,
+      "passed": true
+    },
+    {
+      "service": "frontend",
+      "status_code": 200,
+      "passed": true
+    }
+  ]
+}

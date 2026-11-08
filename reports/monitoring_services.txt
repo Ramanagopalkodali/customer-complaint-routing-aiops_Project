@@ -1,0 +1,7 @@
+NAME                                IMAGE                              COMMAND                  SERVICE         CREATED                  STATUS                    PORTS
+complaint-routing-backend-1         complaint-routing-backend:local    "python -m uvicorn b…"   backend         10 minutes ago           Up 10 minutes (healthy)   127.0.0.1:8000->8000/tcp
+complaint-routing-blackbox-1        prom/blackbox-exporter:v0.29.1     "/bin/blackbox_expor…"   blackbox        Less than a second ago   Up Less than a second     9115/tcp
+complaint-routing-frontend-1        complaint-routing-frontend:local   "python -m streamlit…"   frontend        50 minutes ago           Up 50 minutes (healthy)   127.0.0.1:8501->8501/tcp
+complaint-routing-grafana-1         grafana/grafana:13.3.0             "/run.sh"                grafana         Less than a second ago   Up Less than a second     127.0.0.1:3000->3000/tcp
+complaint-routing-node-exporter-1   prom/node-exporter:v1.12.1         "/bin/node_exporter …"   node-exporter   Less than a second ago   Up Less than a second     9100/tcp
+complaint-routing-prometheus-1      prom/prometheus:v3.16.0            "/bin/prometheus --c…"   prometheus      Less than a second ago   Up Less than a second     127.0.0.1:9090->9090/tcp

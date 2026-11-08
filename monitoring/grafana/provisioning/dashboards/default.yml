@@ -1,0 +1,11 @@
+apiVersion: 1
+providers:
+  - name: Complaint Routing
+    orgId: 1
+    folder: Complaint Routing
+    type: file
+    disableDeletion: true
+    editable: false
+    updateIntervalSeconds: 10
+    options:
+      path: /var/lib/grafana/dashboards

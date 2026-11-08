@@ -1,0 +1,42 @@
+{
+  "targets": [
+    {
+      "job": "backend",
+      "instance": "backend:8000",
+      "health": "up",
+      "last_error": ""
+    },
+    {
+      "job": "blackbox",
+      "instance": "blackbox:9115",
+      "health": "up",
+      "last_error": ""
+    },
+    {
+      "job": "node",
+      "instance": "node-exporter:9100",
+      "health": "up",
+      "last_error": ""
+    },
+    {
+      "job": "prometheus",
+      "instance": "localhost:9090",
+      "health": "up",
+      "last_error": ""
+    },
+    {
+      "job": "service_probes",
+      "instance": "http://backend:8000/healthz",
+      "health": "up",
+      "last_error": ""
+    },
+    {
+      "job": "service_probes",
+      "instance": "http://frontend:8501/_stcore/health",
+      "health": "up",
+      "last_error": ""
+    }
+  ],
+  "dashboard_status_code": 200,
+  "status": "PASS"
+}

@@ -1,0 +1,50 @@
+groups:
+  - name: complaint-routing
+    rules:
+      - alert: ScrapeTargetDown
+        expr: up == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Prometheus cannot scrape {{ $labels.job }}"
+
+      - alert: ApplicationEndpointDown
+        expr: probe_success{job="service_probes"} == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "{{ $labels.component }} health endpoint is unavailable"
+
+      - alert: BackendServerErrors
+        expr: sum(increase(complaint_http_requests_total{job="backend",status=~"5.."}[2m])) > 0
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "Backend returned server errors in the last two minutes"
+
+      - alert: HighPredictionLatency
+        expr: histogram_quantile(0.95, sum by (le) (rate(complaint_http_duration_seconds_bucket{job="backend",route=~"/predict.*"}[2m]))) > 1
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Prediction p95 response preparation time exceeds one second"
+
+      - alert: LowVMMemory
+        expr: node_memory_MemAvailable_bytes{job="node"} / node_memory_MemTotal_bytes{job="node"} < 0.10
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "VM available memory is below ten percent"
+
+      - alert: SavedPipelineEvidenceUnavailable
+        expr: complaint_saved_report_available{job="backend"} == 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Saved {{ $labels.report }} report cannot be read"

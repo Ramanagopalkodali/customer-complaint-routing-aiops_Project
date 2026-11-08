@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "backend_health",
+      "passed": true
+    },
+    {
+      "check": "single_prediction",
+      "passed": true
+    },
+    {
+      "check": "confidence_range",
+      "passed": true
+    },
+    {
+      "check": "batch_prediction",
+      "passed": true
+    },
+    {
+      "check": "batch_count",
+      "passed": true
+    },
+    {
+      "check": "invalid_input_rejected",
+      "passed": true
+    },
+    {
+      "check": "unrecognized_text_requires_review",
+      "passed": true
+    },
+    {
+      "check": "pipeline_endpoint",
+      "passed": true
+    },
+    {
+      "check": "pipeline_has_training",
+      "passed": true
+    },
+    {
+      "check": "frontend_health",
+      "passed": true
+    }
+  ]
+}

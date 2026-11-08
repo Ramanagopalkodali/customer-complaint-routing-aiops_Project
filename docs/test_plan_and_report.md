@@ -34,3 +34,12 @@ Application, model and deployment tests will be added with those stages.
 - Held-out probability shape, range and normalization checks passed.
 - Model hash matched the frozen policy before evaluation.
 - Test results and limitations are in docs/model_development.md.
+
+## Packaging stage
+
+- Portable model export equivalence checks passed.
+- 18 local portable-backend tests passed.
+- Both Docker Compose services became healthy.
+- MLproject passed 16 backend tests inside Docker.
+- Live endpoint results: reports/container_smoke.json.
+- MLproject report: reports/mlproject_backend_tests.xml.

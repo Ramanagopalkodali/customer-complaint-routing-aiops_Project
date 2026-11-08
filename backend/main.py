@@ -62,31 +62,15 @@ class RoutingService:
     """Own model inference and policy application without HTTP dependencies."""
 
     def __init__(self):
-        self.policy = json.loads((ROOT / "artifacts/policy.json").read_text())
-        comparison = json.loads(
-            (ROOT / "reports/training/comparison.json").read_text()
-        )
-        name = self.policy["model_name"]
-        selected = comparison["results"][name]
-        if selected["run_id"] != self.policy["training_run_id"]:
-            raise ValueError("Model run and routing policy do not match")
-        model_file = ROOT / "artifacts/training" / f"{name}.joblib"
-        digest = hashlib.sha256(model_file.read_bytes()).hexdigest()
-        if digest != self.policy["model_sha256"]:
-            raise ValueError("Model hash does not match routing policy")
-        if self.policy["mode"] != "per_predicted_category":
-            raise ValueError("Unsupported routing policy")
+        from backend.model_loader import load_bundle
 
-        mlflow.set_tracking_uri(os.environ.get(
-            "MLFLOW_TRACKING_URI", f"sqlite:///{ROOT / 'mlflow.db'}"
+        directory = Path(os.environ.get(
+            "SERVING_DIR", str(ROOT / "artifacts/serving")
         ))
-        self.model = mlflow.sklearn.load_model(selected["model_uri"])
+        self.model, self.policy = load_bundle(directory)
         if set(self.model.classes_) != set(TEAMS):
             raise ValueError("Unexpected model categories")
         self.thresholds = self.policy["thresholds"]
-        for threshold in self.thresholds.values():
-            if threshold is not None and not 0 <= threshold <= 1:
-                raise ValueError("Invalid policy threshold")
         self.version = self.policy["training_run_id"]
 
     def predict(self, texts):

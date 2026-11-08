@@ -71,3 +71,16 @@ stages:
     outs:
       - reports/test:
           cache: false
+
+  export_model:
+    cmd: python src/export_model.py
+    deps:
+      - src/export_model.py
+      - requirements.lock.txt
+      - artifacts/policy.json
+      - artifacts/training
+    outs:
+      - artifacts/serving
+    metrics:
+      - reports/export_model.json:
+          cache: false

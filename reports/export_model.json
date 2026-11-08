@@ -1,0 +1,13 @@
+{
+  "bundle": "artifacts/serving",
+  "class_check": "PASS",
+  "model_name": "linear_svc_calibrated",
+  "policy_sha256": "aafe6eb39ebf728238381bbae40cde41facb50fb0c9ce4060e45fee2fb117784",
+  "prediction_equivalence": "PASS",
+  "probability_equivalence": "PASS",
+  "retraining_performed": false,
+  "smoke_examples": 5,
+  "source_model_sha256": "176e26dd60e239681f15121b285530fd5b853d0a1b0bf0a13adef98f3aa20977",
+  "status": "PASS",
+  "training_run_id": "978e2c9d02e0494195e9989a3222fd9d"
+}

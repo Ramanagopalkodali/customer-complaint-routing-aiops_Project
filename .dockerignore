@@ -1,0 +1,14 @@
+.git
+.dvc
+.env
+data
+logs
+reports
+mlruns
+mlflow.db*
+evidence
+.pytest_cache
+**/__pycache__
+**/*.pyc
+artifacts/training
+artifacts/policy.json

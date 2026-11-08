@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "run_id": "57eaac6f73664187b247c550bee667d7",
+  "tests_passed": 16,
+  "tests_failed": 0,
+  "report": "reports/mlproject_backend_tests.xml",
+  "execution": "Backend Docker image with project mounted at /app"
+}

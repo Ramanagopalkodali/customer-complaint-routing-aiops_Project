@@ -1,0 +1,3 @@
+NAME                           IMAGE                              COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+complaint-routing-backend-1    complaint-routing-backend:local    "python -m uvicorn b…"   backend    11 seconds ago   Up 11 seconds (healthy)   127.0.0.1:8000->8000/tcp
+complaint-routing-frontend-1   complaint-routing-frontend:local   "python -m streamlit…"   frontend   11 seconds ago   Up 5 seconds (healthy)    127.0.0.1:8501->8501/tcp

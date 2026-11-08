@@ -1,0 +1,3 @@
+CONTAINER                      REPOSITORY                   TAG                 PLATFORM            IMAGE ID            SIZE                CREATED
+complaint-routing-backend-1    complaint-routing-backend    local               linux/arm64         609b06a2038a        2.03GB              4 minutes ago
+complaint-routing-frontend-1   complaint-routing-frontend   local               linux/arm64         d57267418f5a        2.02GB              4 minutes ago

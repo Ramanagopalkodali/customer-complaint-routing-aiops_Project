@@ -1,0 +1,8 @@
+name: customer-complaint-routing
+
+docker_env:
+  image: complaint-routing-backend:local
+
+entry_points:
+  backend_tests:
+    command: "python -m pytest tests/test_backend.py -q --junitxml=reports/mlproject_backend_tests.xml"

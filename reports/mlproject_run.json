@@ -1,0 +1,17 @@
+{
+  "docker_image": "complaint-routing-backend:local",
+  "docker_image_id": "sha256:609b06a2038a2c4fa091d203a4dfaf33ca0efa00af928f3478aec8ec8347f07e",
+  "error": "[Errno 13] Permission denied: '/home/ramscp/customer-complaint-routing-aiops_Project/mlruns/1/2695dd0f6a494ea69367dc8cbe77d22a/artifacts/tests'",
+  "git_commit": "8f6b5197b09cd1e617db6553665bc8e2875378e3",
+  "run_id": "2695dd0f6a494ea69367dc8cbe77d22a",
+  "source_sha256": {
+    "MLproject": "d7447a190a64da96c5c3c5091e300f6b1545ce657f46619493a5ace409a5caaf",
+    "backend/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "backend/main.py": "609c87c95b507d7e042310b14fb56eea66381afff796c3d601cc414a6f9b05c2",
+    "backend/model_loader.py": "133ff264f792a7adf41c00359b803e4bc82b56ea923e93e70e2507765cad1f69",
+    "backend/pipeline.py": "beb7b2ace76b93158fe2e71e4a05cb0abb9342a9aef2c94c92d08ecd0bf2483d",
+    "scripts/run_mlproject_tests.py": "f994dc23962260c5bddd08517d532eecb643a7ba303281f518a046c9a6f5dbdf",
+    "tests/test_backend.py": "b686a7bf5a4da163ed55e13aab79424e1a145e1edf01b51ae53277cff83c5288"
+  },
+  "status": "FAIL"
+}

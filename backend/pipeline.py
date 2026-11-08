@@ -1,6 +1,7 @@
 """Read-only pipeline snapshot assembled from DVC and saved run evidence."""
 import base64
 import io
+import os
 import json
 import subprocess
 from datetime import datetime, timezone
@@ -10,7 +11,7 @@ from xml.etree import ElementTree
 import yaml
 from matplotlib.figure import Figure
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(os.environ.get("PIPELINE_ROOT", str(Path(__file__).resolve().parents[1])))
 
 
 def read_json(relative):

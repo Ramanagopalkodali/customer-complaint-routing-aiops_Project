@@ -14,4 +14,4 @@ mlruns/
 mlflow.db
 
 logs/
-mlflow.db-*
+mlflow.db-*\nreports/app_results/\n

@@ -1,0 +1,6 @@
+predicted_category,threshold,automatically_routed,correctly_routed,routing_precision
+bank_account,0.74,3676,3496,0.9510337323177367
+credit_card,0.86,1903,1815,0.953757225433526
+credit_reporting,0.67,52549,49965,0.9508268473234505
+debt_collection,0.98,294,284,0.9659863945578231
+mortgage,0.69,1644,1562,0.9501216545012166

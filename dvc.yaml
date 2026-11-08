@@ -34,3 +34,40 @@ stages:
       - artifacts/training
       - reports/training:
           cache: false
+
+  select_threshold:
+    cmd: python src/select_threshold.py
+    deps:
+      - src/select_threshold.py
+      - requirements.lock.txt
+      - reports/training
+      - artifacts/training
+    outs:
+      - artifacts/policy.json
+      - reports/threshold:
+          cache: false
+
+  validate_threshold:
+    cmd: python -m pytest tests/test_threshold.py -q --junitxml=reports/threshold_tests.xml
+    deps:
+      - src/select_threshold.py
+      - tests/test_threshold.py
+      - requirements.lock.txt
+      - artifacts/policy.json
+    outs:
+      - reports/threshold_tests.xml:
+          cache: false
+
+  evaluate:
+    cmd: python -m src.evaluate
+    deps:
+      - src/evaluate.py
+      - src/select_threshold.py
+      - requirements.lock.txt
+      - artifacts/training
+      - artifacts/policy.json
+      - reports/threshold_tests.xml
+      - data/processed/test.csv
+    outs:
+      - reports/test:
+          cache: false

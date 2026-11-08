@@ -1,0 +1,6 @@
+,bank_account,credit_card,credit_reporting,debt_collection,mortgage
+bank_account,4477,304,69,57,33
+credit_card,365,4241,401,235,19
+credit_reporting,327,1552,47715,3818,383
+debt_collection,80,259,1143,6605,74
+mortgage,40,33,27,45,1975

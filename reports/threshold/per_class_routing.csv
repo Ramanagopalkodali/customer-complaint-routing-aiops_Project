@@ -1,0 +1,6 @@
+actual_class,total,correctly_auto_routed,fraction_correctly_auto_routed
+bank_account,4940,3496,0.7076923076923077
+credit_card,5261,1815,0.3449914464930622
+credit_reporting,53795,49965,0.9288037921739939
+debt_collection,8161,284,0.03479965690479108
+mortgage,2120,1562,0.7367924528301887

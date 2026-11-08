@@ -52,3 +52,93 @@ stages:
       hash: md5
       md5: d0d991ebc6936d1987479fd2471772f4
       size: 1712
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 71b0c18bae2ab06d9f3621a2a3560baf
+      size: 175913975
+    - path: data/processed/validation.csv
+      hash: md5
+      md5: 9744991ea2fbcc56df63522135e0cf70
+      size: 99622908
+    - path: reports/ingestion_tests.xml
+      hash: md5
+      md5: d0d991ebc6936d1987479fd2471772f4
+      size: 1712
+    - path: requirements.lock.txt
+      hash: md5
+      md5: 176cccf39caff1366ad95e8ab150b464
+      size: 3012
+    - path: src/train.py
+      hash: md5
+      md5: 03cf1e18acaf0cee3c64cf24f77457ed
+      size: 9165
+    outs:
+    - path: artifacts/training
+      hash: md5
+      md5: 6b75f26bc2f39e9bf051aa71444cb949.dir
+      size: 6150698
+      nfiles: 2
+    - path: reports/training
+      hash: md5
+      md5: b44786d554d6ea2de03dfaad1761cc2f.dir
+      size: 8973519
+      nfiles: 9
+  select_threshold:
+    cmd: python src/select_threshold.py
+    deps:
+    - path: artifacts/training
+      hash: md5
+      md5: 6b75f26bc2f39e9bf051aa71444cb949.dir
+      size: 6150698
+      nfiles: 2
+    - path: reports/training
+      hash: md5
+      md5: b44786d554d6ea2de03dfaad1761cc2f.dir
+      size: 8973519
+      nfiles: 9
+    - path: requirements.lock.txt
+      hash: md5
+      md5: 176cccf39caff1366ad95e8ab150b464
+      size: 3012
+    - path: src/select_threshold.py
+      hash: md5
+      md5: 6eb1b59b854d1b4a280bc73c671565d1
+      size: 6806
+    outs:
+    - path: artifacts/policy.json
+      hash: md5
+      md5: 1beb2bc29ca86691e7b2d5d36a1eb3ef
+      size: 884
+    - path: reports/threshold
+      hash: md5
+      md5: 0dce22019c0ab7f643b64c10c2a06e93.dir
+      size: 15951
+      nfiles: 3
+  validate_threshold:
+    cmd: python -m pytest tests/test_threshold.py -q 
+      --junitxml=reports/threshold_tests.xml
+    deps:
+    - path: artifacts/policy.json
+      hash: md5
+      md5: 1beb2bc29ca86691e7b2d5d36a1eb3ef
+      size: 884
+    - path: requirements.lock.txt
+      hash: md5
+      md5: 176cccf39caff1366ad95e8ab150b464
+      size: 3012
+    - path: src/select_threshold.py
+      hash: md5
+      md5: 6eb1b59b854d1b4a280bc73c671565d1
+      size: 6806
+    - path: tests/test_threshold.py
+      hash: md5
+      md5: da154a708f755337d9215b9410cd3e8d
+      size: 2357
+    outs:
+    - path: reports/threshold_tests.xml
+      hash: md5
+      md5: 7d8803652301dc64b947838385c98a6a
+      size: 1406

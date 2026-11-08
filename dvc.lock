@@ -27,7 +27,7 @@ stages:
       md5: 33c269b41f0dd880d2ad1b3cfd0e6f47
       size: 2227
   validate_data:
-    cmd: python -m pytest tests/test_ingest.py -q 
+    cmd: python -m pytest tests/test_ingest.py -q
       --junitxml=reports/ingestion_tests.xml
     deps:
     - path: data/processed
@@ -118,7 +118,7 @@ stages:
       size: 15951
       nfiles: 3
   validate_threshold:
-    cmd: python -m pytest tests/test_threshold.py -q 
+    cmd: python -m pytest tests/test_threshold.py -q
       --junitxml=reports/threshold_tests.xml
     deps:
     - path: artifacts/policy.json
@@ -142,3 +142,41 @@ stages:
       hash: md5
       md5: 7d8803652301dc64b947838385c98a6a
       size: 1406
+  evaluate:
+    cmd: python -m src.evaluate
+    deps:
+    - path: artifacts/policy.json
+      hash: md5
+      md5: 1beb2bc29ca86691e7b2d5d36a1eb3ef
+      size: 884
+    - path: artifacts/training
+      hash: md5
+      md5: 6b75f26bc2f39e9bf051aa71444cb949.dir
+      size: 6150698
+      nfiles: 2
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 5267fc68bc8d096739cf8b7b3e7703b2
+      size: 51188727
+    - path: reports/threshold_tests.xml
+      hash: md5
+      md5: 7d8803652301dc64b947838385c98a6a
+      size: 1406
+    - path: requirements.lock.txt
+      hash: md5
+      md5: 176cccf39caff1366ad95e8ab150b464
+      size: 3012
+    - path: src/evaluate.py
+      hash: md5
+      md5: 5feef7ca2d964578490d0a285b37500a
+      size: 6543
+    - path: src/select_threshold.py
+      hash: md5
+      md5: 6eb1b59b854d1b4a280bc73c671565d1
+      size: 6806
+    outs:
+    - path: reports/test
+      hash: md5
+      md5: eb4e4e7ee0069690782bafad4e61785e.dir
+      size: 2631531
+      nfiles: 6

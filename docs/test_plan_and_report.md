@@ -26,3 +26,11 @@ columns, dates, output class coverage and chronological separation.
 Near-duplicate or semantically similar narratives are not detected.
 
 Application, model and deployment tests will be added with those stages.
+
+## Model and routing stage
+
+- Both trained models passed MLflow reload prediction checks.
+- Eleven routing-policy tests passed; see reports/threshold_tests.xml.
+- Held-out probability shape, range and normalization checks passed.
+- Model hash matched the frozen policy before evaluation.
+- Test results and limitations are in docs/model_development.md.

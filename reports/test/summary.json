@@ -1,0 +1,26 @@
+{
+  "evaluation_run_id": "495ec69309314dd580dce1884664bc84",
+  "git_commit": "c62b6332549f653e319907fb15261b38a875bc39",
+  "metrics": {
+    "test_accuracy": 0.8952223882904705,
+    "test_automatic_accuracy": 0.9466111200128184,
+    "test_automatic_count": 31205,
+    "test_automatic_coverage": 0.8041282275936711,
+    "test_macro_f1": 0.8264181985761796,
+    "test_review_rate": 0.19587177240632891
+  },
+  "model_name": "linear_svc_calibrated",
+  "model_probability_checks": "PASS",
+  "policy_sha256": "aafe6eb39ebf728238381bbae40cde41facb50fb0c9ce4060e45fee2fb117784",
+  "test_rows": 38806,
+  "test_sha256": "a5c1a686c587f55cea7acc3d9d57a9f35a69e1e0771b71481df1f32919bbb2b0",
+  "thresholds": {
+    "bank_account": 0.74,
+    "credit_card": 0.86,
+    "credit_reporting": 0.67,
+    "debt_collection": 0.98,
+    "mortgage": 0.69
+  },
+  "thresholds_changed_using_test": false,
+  "training_run_id": "978e2c9d02e0494195e9989a3222fd9d"
+}

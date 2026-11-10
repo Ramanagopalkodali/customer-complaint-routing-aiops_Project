@@ -16,7 +16,10 @@ ROOT = Path(os.environ.get("PIPELINE_ROOT", str(Path(__file__).resolve().parents
 
 def read_json(relative):
     path = ROOT / relative
-    return json.loads(path.read_text()) if path.exists() else None
+    try:
+        return json.loads(path.read_text())
+    except (OSError, ValueError):
+        return None
 
 
 def output_paths(stage):
@@ -103,7 +106,7 @@ def test_summary(relative):
     }
 
 
-def pipeline_snapshot():
+def pipeline_snapshot(active_model_version=None):
     """Report saved evidence and DVC freshness; never execute pipeline stages."""
     config = yaml.safe_load((ROOT / "dvc.yaml").read_text())
     stages = {"source_data": {"outs": ["data/raw"]}, **config["stages"]}
@@ -114,7 +117,7 @@ def pipeline_snapshot():
         )
         changes = json.loads(result.stdout)
         workspace_status = "changes_detected" if changes else "up_to_date"
-    except (subprocess.SubprocessError, ValueError):
+    except (OSError, subprocess.SubprocessError, ValueError):
         workspace_status, changes = "unavailable", None
 
     failures = []
@@ -130,7 +133,22 @@ def pipeline_snapshot():
                 failures.append({"log": filename, "message": line[:500]})
 
     comparison = read_json("reports/training/comparison.json")
+    lifecycle = {
+        "monitoring": read_json("reports/lifecycle/monitoring.json"),
+        "acceptance": read_json("reports/lifecycle/acceptance/decision.json"),
+        "deployment": read_json("reports/lifecycle/deployment_verification.json"),
+        "final": read_json("reports/lifecycle/final/summary.json"),
+        "runner": read_json("reports/lifecycle/runner.json"),
+    }
+    final = lifecycle["final"]
+    final_matches_active = bool(
+        active_model_version and isinstance(final, dict)
+        and final.get("selected_training_run_id") == active_model_version
+    )
     return {
+        "active_model_version": active_model_version,
+        "lifecycle": lifecycle,
+        "final_evaluation_matches_active_model": final_matches_active,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "workspace_status": workspace_status,
         "workspace_changes": changes,
@@ -144,7 +162,11 @@ def pipeline_snapshot():
             test_summary(path) for path in (
                 "reports/ingestion_tests.xml",
                 "reports/threshold_tests.xml",
-                "reports/backend_tests.xml",
+                "reports/monitoring_instrumentation_tests.xml",
+                "reports/portable_backend_tests.xml",
+                "reports/mlproject_backend_tests.xml",
+                "reports/lifecycle/ci_tests.xml",
+                "reports/lifecycle/runner_tests.xml",
             )
         ],
         "recorded_failures": failures[-20:],

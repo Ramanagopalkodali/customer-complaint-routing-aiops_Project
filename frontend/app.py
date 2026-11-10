@@ -245,10 +245,63 @@ with pipeline_tab:
                 for name, result in snapshot["models"].items()
             ]
             st.dataframe(pd.DataFrame(rows), hide_index=True)
-            st.write("Selected model:", snapshot["selected_model"])
+            st.write("Original validation-selected model type:", snapshot["selected_model"])
+
+        st.subheader("Currently loaded model")
+        st.code(snapshot.get("active_model_version") or "Unavailable")
+        st.caption("Identity reported by the running backend model service.")
+
+        lifecycle = snapshot.get("lifecycle", {})
+        monitoring = lifecycle.get("monitoring")
+        if monitoring:
+            st.subheader("Historical November monitoring")
+            st.json({
+                "period": monitoring.get("period"),
+                "model_run": monitoring.get("provenance", {}).get(
+                    "champion_training_run_id"
+                ),
+                "metrics": monitoring.get("metrics"),
+                "retraining_required": monitoring.get("retraining_required"),
+            })
+
+        acceptance = lifecycle.get("acceptance")
+        if acceptance:
+            st.subheader("Historical candidate acceptance")
+            st.json({
+                "decision": acceptance.get("decision"),
+                "selected_run": acceptance.get("selected_run_id"),
+                "checks": acceptance.get("checks"),
+            })
+
+        final = lifecycle.get("final")
+        if final:
+            st.subheader("Reserved December evaluation")
+            st.caption(
+                "Saved evaluation of model " +
+                str(final.get("selected_training_run_id"))
+            )
+            if not snapshot.get("final_evaluation_matches_active_model"):
+                st.warning(
+                    "This saved evaluation belongs to a different model "
+                    "from the currently loaded model."
+                )
+            st.json(final.get("metrics", {}))
+
+        runner = lifecycle.get("runner")
+        if runner:
+            st.subheader("Last conditional lifecycle run")
+            st.json({
+                "status": runner.get("status"),
+                "outcome": runner.get("outcome"),
+                "active_model_after_run": runner.get("final_active_model_version"),
+            })
+            st.caption(
+                "Saved historical workflow result; this screen does not "
+                "start retraining or continuously monitor new batches."
+            )
 
         if snapshot.get("test"):
-            st.subheader("Held-out October evaluation")
+            st.subheader("Historical October evaluation — original model")
             st.json(snapshot["test"]["metrics"])
 
         st.subheader("Saved test reports")

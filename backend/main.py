@@ -204,10 +204,10 @@ def predict_batch(payload: BatchRequest, request: Request):
 
 
 @app.get("/pipeline")
-def pipeline():
+def pipeline(request: Request):
     """Return workflow visualization and recorded execution evidence."""
     from backend.pipeline import pipeline_snapshot
-    return pipeline_snapshot()
+    return pipeline_snapshot(active_model_version=request.app.state.service.version)
 
 
 

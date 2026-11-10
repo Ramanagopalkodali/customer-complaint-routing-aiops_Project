@@ -2,7 +2,7 @@
   "uid": "complaint-routing",
   "title": "Complaint Routing \u2014 Application and VM",
   "schemaVersion": 39,
-  "version": 1,
+  "version": 2,
   "timezone": "browser",
   "refresh": "5s",
   "time": {
@@ -580,6 +580,342 @@
           "fields": "",
           "values": false
         }
+      }
+    },
+    {
+      "id": 17,
+      "title": "Historical November \u2014 text-length divergence",
+      "description": "Saved historical lifecycle evidence. Model identity is in the training_run_id label. This is not live production accuracy.",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 56
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "complaint_lifecycle_text_length_jsd{job=\"backend\"}",
+          "legendFormat": "{{report}} {{training_run_id}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 4
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "none",
+        "graphMode": "none",
+        "textMode": "auto"
+      }
+    },
+    {
+      "id": 18,
+      "title": "Historical November \u2014 predicted-product divergence",
+      "description": "Saved historical lifecycle evidence. Model identity is in the training_run_id label. This is not live production accuracy.",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 56
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "complaint_lifecycle_product_jsd{job=\"backend\"}",
+          "legendFormat": "{{report}} {{training_run_id}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 4
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "none",
+        "graphMode": "none",
+        "textMode": "auto"
+      }
+    },
+    {
+      "id": 19,
+      "title": "Historical November \u2014 retraining requested",
+      "description": "Saved historical lifecycle evidence. Model identity is in the training_run_id label. This is not live production accuracy.",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 61
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "complaint_lifecycle_retraining_required{job=\"backend\"}",
+          "legendFormat": "{{report}} {{training_run_id}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 4
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "none",
+        "graphMode": "none",
+        "textMode": "auto"
+      }
+    },
+    {
+      "id": 20,
+      "title": "Historical candidate \u2014 acceptance passed",
+      "description": "Saved historical lifecycle evidence. Model identity is in the training_run_id label. This is not live production accuracy.",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 61
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "complaint_lifecycle_candidate_accepted{job=\"backend\"}",
+          "legendFormat": "{{report}} {{training_run_id}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 4
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "none",
+        "graphMode": "none",
+        "textMode": "auto"
+      }
+    },
+    {
+      "id": 21,
+      "title": "Historical December \u2014 macro-F1",
+      "description": "Saved historical lifecycle evidence. Model identity is in the training_run_id label. This is not live production accuracy.",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 66
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "complaint_lifecycle_final_macro_f1{job=\"backend\"}",
+          "legendFormat": "{{report}} {{training_run_id}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 4
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "none",
+        "graphMode": "none",
+        "textMode": "auto"
+      }
+    },
+    {
+      "id": 22,
+      "title": "Historical December \u2014 automatic-routing accuracy",
+      "description": "Saved historical lifecycle evidence. Model identity is in the training_run_id label. This is not live production accuracy.",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 66
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "complaint_lifecycle_final_automatic_accuracy{job=\"backend\"}",
+          "legendFormat": "{{report}} {{training_run_id}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 4
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "none",
+        "graphMode": "none",
+        "textMode": "auto"
+      }
+    },
+    {
+      "id": 23,
+      "title": "Historical December \u2014 automatic-routing coverage",
+      "description": "Saved historical lifecycle evidence. Model identity is in the training_run_id label. This is not live production accuracy.",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 71
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "complaint_lifecycle_final_automatic_coverage{job=\"backend\"}",
+          "legendFormat": "{{report}} {{training_run_id}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 4
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "none",
+        "graphMode": "none",
+        "textMode": "auto"
+      }
+    },
+    {
+      "id": 24,
+      "title": "Saved lifecycle reports \u2014 1 means available",
+      "description": "Saved historical lifecycle evidence. Model identity is in the training_run_id label. This is not live production accuracy.",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 71
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "complaint_lifecycle_report_available{job=\"backend\"}",
+          "legendFormat": "{{report}} {{training_run_id}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 4
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "none",
+        "graphMode": "none",
+        "textMode": "auto"
       }
     }
   ]

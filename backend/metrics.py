@@ -117,3 +117,7 @@ class SavedEvidenceCollector:
 
 
 REGISTRY.register(SavedEvidenceCollector())
+
+# Saved lifecycle evidence is separate from live request instrumentation.
+from backend.lifecycle_metrics import LifecycleCollector
+REGISTRY.register(LifecycleCollector())

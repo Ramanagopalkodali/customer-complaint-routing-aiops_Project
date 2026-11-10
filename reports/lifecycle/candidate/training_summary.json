@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "training_reason": "explicit_demonstration",
+  "automatic_trigger_occurred": false,
+  "monitoring_trigger_reasons": [],
+  "candidate_run_id": "f8d2fa4071174ad3b799a9719ba4697c",
+  "candidate_model_uri": "models:/m-f7a3e08b63ac4cd8a116dc6ffda4ac8c",
+  "training_rows": 157912,
+  "new_training_rows": 19578,
+  "threshold_selection_rows": 9585,
+  "thresholds": {
+    "bank_account": 0.73,
+    "credit_card": 0.89,
+    "credit_reporting": 0.6,
+    "debt_collection": 0.94,
+    "mortgage": 0.6
+  },
+  "metrics": {
+    "threshold_selection_macro_f1": 0.8319879787940379,
+    "threshold_selection_accuracy": 0.9055816379760042,
+    "threshold_selection_automatic_count": 8011,
+    "threshold_selection_automatic_coverage": 0.8357850808555034,
+    "threshold_selection_automatic_accuracy": 0.9509424541255773
+  },
+  "model_reload_check": "PASS",
+  "candidate_model_sha256": "704953203fd96fa42adf54e876ebbd6613184e46fed6283afd3d1107212aa43a",
+  "candidate_policy_sha256": "c9a7d4e0aaf0fafbeeb6d2a374cec5a601601e64f7ac076109b510c398105d0c",
+  "provenance": {
+    "git_commit": "b2e686e760cdecc8b670930873e3918ecd71bdf7",
+    "config_sha256": "e28592cace49b2fe6015a918b09fd668080e1a50e7ed603a9abfcb44675dc2b4",
+    "monitoring_report_sha256": "38bca3cebfec88169130ffc997db3cab07f5616387e5ff410f05266c2e3e840c",
+    "original_train_sha256": "814f0b5d66750196ce249efca0a1a56d5e1d496a75490bba6452aab77bf674d5",
+    "future_source_sha256": "ffa98caff413291dbd81f23633ce3754e31d3bba0db10c73e984d0c3eca6afbb",
+    "parent_champion_run_id": "978e2c9d02e0494195e9989a3222fd9d",
+    "parent_serving_manifest_sha256": "04e8b7a8ce7aa512107e0a2a0a4592ae2c0088307f0a259ff3bf84c51bde5c34",
+    "training_reason": "explicit_demonstration"
+  },
+  "acceptance_period_evaluated": false,
+  "december_evaluated": false,
+  "serving_model_replaced": false
+}

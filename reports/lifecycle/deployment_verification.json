@@ -1,0 +1,226 @@
+{
+  "status": "PASS",
+  "scope": "Local sequential deployment and rollback drill; no traffic split",
+  "phases": [
+    {
+      "phase": "candidate_deployment",
+      "status": "PASS",
+      "model_version": "f8d2fa4071174ad3b799a9719ba4697c",
+      "batch_predictions_checked": 6,
+      "single_prediction_matches": true,
+      "invalid_input_status": 422,
+      "frontend_health_status": 200,
+      "predictions": [
+        {
+          "product": "credit_card",
+          "confidence": 0.8659684513643687,
+          "threshold": 0.89,
+          "recommended_team": "Credit Card Support",
+          "assigned_team": "Human review",
+          "human_review": true,
+          "review_reason": "low_confidence",
+          "model_version": "f8d2fa4071174ad3b799a9719ba4697c"
+        },
+        {
+          "product": "mortgage",
+          "confidence": 0.9848176060870706,
+          "threshold": 0.6,
+          "recommended_team": "Mortgage Support",
+          "assigned_team": "Mortgage Support",
+          "human_review": false,
+          "review_reason": null,
+          "model_version": "f8d2fa4071174ad3b799a9719ba4697c"
+        },
+        {
+          "product": "credit_reporting",
+          "confidence": 0.9885548800447573,
+          "threshold": 0.6,
+          "recommended_team": "Credit Reporting Support",
+          "assigned_team": "Credit Reporting Support",
+          "human_review": false,
+          "review_reason": null,
+          "model_version": "f8d2fa4071174ad3b799a9719ba4697c"
+        },
+        {
+          "product": "debt_collection",
+          "confidence": 0.9935430543173417,
+          "threshold": 0.94,
+          "recommended_team": "Debt Collection Support",
+          "assigned_team": "Debt Collection Support",
+          "human_review": false,
+          "review_reason": null,
+          "model_version": "f8d2fa4071174ad3b799a9719ba4697c"
+        },
+        {
+          "product": "bank_account",
+          "confidence": 0.9509217576459112,
+          "threshold": 0.73,
+          "recommended_team": "Bank Accounts Support",
+          "assigned_team": "Bank Accounts Support",
+          "human_review": false,
+          "review_reason": null,
+          "model_version": "f8d2fa4071174ad3b799a9719ba4697c"
+        },
+        {
+          "product": "credit_reporting",
+          "confidence": 0.7368694039118365,
+          "threshold": 0.6,
+          "recommended_team": "Credit Reporting Support",
+          "assigned_team": "Human review",
+          "human_review": true,
+          "review_reason": "unrecognized_text",
+          "model_version": "f8d2fa4071174ad3b799a9719ba4697c"
+        }
+      ]
+    },
+    {
+      "phase": "original_model_rollback",
+      "status": "PASS",
+      "model_version": "978e2c9d02e0494195e9989a3222fd9d",
+      "batch_predictions_checked": 6,
+      "single_prediction_matches": true,
+      "invalid_input_status": 422,
+      "frontend_health_status": 200,
+      "predictions": [
+        {
+          "product": "credit_card",
+          "confidence": 0.866970287247808,
+          "threshold": 0.86,
+          "recommended_team": "Credit Card Support",
+          "assigned_team": "Credit Card Support",
+          "human_review": false,
+          "review_reason": null,
+          "model_version": "978e2c9d02e0494195e9989a3222fd9d"
+        },
+        {
+          "product": "mortgage",
+          "confidence": 0.9855261891958248,
+          "threshold": 0.69,
+          "recommended_team": "Mortgage Support",
+          "assigned_team": "Mortgage Support",
+          "human_review": false,
+          "review_reason": null,
+          "model_version": "978e2c9d02e0494195e9989a3222fd9d"
+        },
+        {
+          "product": "credit_reporting",
+          "confidence": 0.9828389228922101,
+          "threshold": 0.67,
+          "recommended_team": "Credit Reporting Support",
+          "assigned_team": "Credit Reporting Support",
+          "human_review": false,
+          "review_reason": null,
+          "model_version": "978e2c9d02e0494195e9989a3222fd9d"
+        },
+        {
+          "product": "debt_collection",
+          "confidence": 0.9938857003135313,
+          "threshold": 0.98,
+          "recommended_team": "Debt Collection Support",
+          "assigned_team": "Debt Collection Support",
+          "human_review": false,
+          "review_reason": null,
+          "model_version": "978e2c9d02e0494195e9989a3222fd9d"
+        },
+        {
+          "product": "bank_account",
+          "confidence": 0.9572253832342005,
+          "threshold": 0.74,
+          "recommended_team": "Bank Accounts Support",
+          "assigned_team": "Bank Accounts Support",
+          "human_review": false,
+          "review_reason": null,
+          "model_version": "978e2c9d02e0494195e9989a3222fd9d"
+        },
+        {
+          "product": "credit_reporting",
+          "confidence": 0.7594022472038634,
+          "threshold": 0.67,
+          "recommended_team": "Credit Reporting Support",
+          "assigned_team": "Human review",
+          "human_review": true,
+          "review_reason": "unrecognized_text",
+          "model_version": "978e2c9d02e0494195e9989a3222fd9d"
+        }
+      ]
+    },
+    {
+      "phase": "candidate_redeployment",
+      "status": "PASS",
+      "model_version": "f8d2fa4071174ad3b799a9719ba4697c",
+      "batch_predictions_checked": 6,
+      "single_prediction_matches": true,
+      "invalid_input_status": 422,
+      "frontend_health_status": 200,
+      "predictions": [
+        {
+          "product": "credit_card",
+          "confidence": 0.8659684513643687,
+          "threshold": 0.89,
+          "recommended_team": "Credit Card Support",
+          "assigned_team": "Human review",
+          "human_review": true,
+          "review_reason": "low_confidence",
+          "model_version": "f8d2fa4071174ad3b799a9719ba4697c"
+        },
+        {
+          "product": "mortgage",
+          "confidence": 0.9848176060870706,
+          "threshold": 0.6,
+          "recommended_team": "Mortgage Support",
+          "assigned_team": "Mortgage Support",
+          "human_review": false,
+          "review_reason": null,
+          "model_version": "f8d2fa4071174ad3b799a9719ba4697c"
+        },
+        {
+          "product": "credit_reporting",
+          "confidence": 0.9885548800447573,
+          "threshold": 0.6,
+          "recommended_team": "Credit Reporting Support",
+          "assigned_team": "Credit Reporting Support",
+          "human_review": false,
+          "review_reason": null,
+          "model_version": "f8d2fa4071174ad3b799a9719ba4697c"
+        },
+        {
+          "product": "debt_collection",
+          "confidence": 0.9935430543173417,
+          "threshold": 0.94,
+          "recommended_team": "Debt Collection Support",
+          "assigned_team": "Debt Collection Support",
+          "human_review": false,
+          "review_reason": null,
+          "model_version": "f8d2fa4071174ad3b799a9719ba4697c"
+        },
+        {
+          "product": "bank_account",
+          "confidence": 0.9509217576459112,
+          "threshold": 0.73,
+          "recommended_team": "Bank Accounts Support",
+          "assigned_team": "Bank Accounts Support",
+          "human_review": false,
+          "review_reason": null,
+          "model_version": "f8d2fa4071174ad3b799a9719ba4697c"
+        },
+        {
+          "product": "credit_reporting",
+          "confidence": 0.7368694039118365,
+          "threshold": 0.6,
+          "recommended_team": "Credit Reporting Support",
+          "assigned_team": "Human review",
+          "human_review": true,
+          "review_reason": "unrecognized_text",
+          "model_version": "f8d2fa4071174ad3b799a9719ba4697c"
+        }
+      ]
+    }
+  ],
+  "packaging_report_sha256": "6ad59f92a1b727b1c9f96f6c7ad7c0af13cb84d0b0c88fd953c4498ade6c969f",
+  "original_manifest_sha256": "04e8b7a8ce7aa512107e0a2a0a4592ae2c0088307f0a259ff3bf84c51bde5c34",
+  "candidate_manifest_sha256": "1c0991313f073c719ed0fc844f2de251193cbca01a132f5f51a8a23ef5743452",
+  "active_model_version": "f8d2fa4071174ad3b799a9719ba4697c",
+  "persistent_bundle": "artifacts/lifecycle/candidate/serving",
+  "rollback_verified": true,
+  "december_evaluated": false
+}

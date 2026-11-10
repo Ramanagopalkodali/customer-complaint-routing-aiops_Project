@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "period": [
+    "2024-11-01",
+    "2024-11-15"
+  ],
+  "monitoring_rows": 19578,
+  "reference_rows": 5000,
+  "drift_batch_sample_rows": 5000,
+  "metrics": {
+    "text_length_jsd": 0.0036488153436205657,
+    "predicted_product_jsd": 0.001209666652986547,
+    "labeled_macro_f1": 0.8327794161621247,
+    "labeled_accuracy": 0.8970272755133313,
+    "automatic_coverage": 0.8126468485034222,
+    "automatic_count": 15910,
+    "unrecognized_fraction": 0.0,
+    "automatic_accuracy": 0.9469516027655562
+  },
+  "batch_distribution": {
+    "text_length_counts": [
+      118,
+      462,
+      896,
+      1256,
+      1388,
+      770,
+      97,
+      13
+    ],
+    "predicted_product_counts": [
+      406,
+      304,
+      3732,
+      421,
+      137
+    ]
+  },
+  "retraining_required": false,
+  "trigger_reasons": [],
+  "monitoring_run_id": "005fd7e2c2c1441fa4b725b5ee814d02",
+  "provenance": {
+    "git_commit": "3feb35f0c24a956141b610ad4c633fb5b4af3ed6",
+    "config_sha256": "e28592cace49b2fe6015a918b09fd668080e1a50e7ed603a9abfcb44675dc2b4",
+    "reference_source_sha256": "814f0b5d66750196ce249efca0a1a56d5e1d496a75490bba6452aab77bf674d5",
+    "future_source_sha256": "ffa98caff413291dbd81f23633ce3754e31d3bba0db10c73e984d0c3eca6afbb",
+    "serving_manifest_sha256": "04e8b7a8ce7aa512107e0a2a0a4592ae2c0088307f0a259ff3bf84c51bde5c34",
+    "champion_training_run_id": "978e2c9d02e0494195e9989a3222fd9d"
+  },
+  "model_replaced": false,
+  "december_evaluated": false,
+  "limitations": "Distribution proxies do not detect every semantic shift. Performance uses historical labels assumed available after arrival. Thresholds are demonstration settings, not production calibration."
+}

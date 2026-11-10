@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "period": [
+    "2024-12-01",
+    "2024-12-31"
+  ],
+  "final_rows": 41282,
+  "selected_training_run_id": "f8d2fa4071174ad3b799a9719ba4697c",
+  "evaluation_run_id": "29c70592ae474df0a4348d800861d65d",
+  "thresholds": {
+    "bank_account": 0.73,
+    "credit_card": 0.89,
+    "credit_reporting": 0.6,
+    "debt_collection": 0.94,
+    "mortgage": 0.6
+  },
+  "metrics": {
+    "macro_f1": 0.8313863529461398,
+    "accuracy": 0.8959837217189089,
+    "automatic_count": 34288,
+    "automatic_coverage": 0.8305799137638681,
+    "automatic_accuracy": 0.9425454969668688,
+    "recall": {
+      "bank_account": 0.8925470332850941,
+      "credit_card": 0.7225244831338411,
+      "credit_reporting": 0.9556262558606832,
+      "debt_collection": 0.6318602261048304,
+      "mortgage": 0.888030888030888
+    }
+  },
+  "provenance": {
+    "git_commit": "255c4f6f54ef3cf0ed97822baf3236ce799b39e2",
+    "config_sha256": "e28592cace49b2fe6015a918b09fd668080e1a50e7ed603a9abfcb44675dc2b4",
+    "acceptance_decision_sha256": "cfbf8c1de4295a583eaaceae74cc71d0ee2e4d470d49d9c03547935814dfd15b",
+    "deployment_report_sha256": "fc3002eba9be595384d974b73e0804d7b86c541f574ee78f3d64ab203493593c",
+    "bundle_manifest_sha256": "1c0991313f073c719ed0fc844f2de251193cbca01a132f5f51a8a23ef5743452",
+    "future_source_sha256": "ffa98caff413291dbd81f23633ce3754e31d3bba0db10c73e984d0c3eca6afbb",
+    "selected_training_run_id": "f8d2fa4071174ad3b799a9719ba4697c"
+  },
+  "model_changed_using_final_data": false,
+  "thresholds_changed_using_final_data": false,
+  "note": "PASS means evaluation completed and integrity checks passed; it does not mean a performance target was guaranteed."
+}

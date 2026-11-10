@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "period": [
+    "2024-11-23",
+    "2024-11-30"
+  ],
+  "acceptance_rows": 8913,
+  "champion": {
+    "macro_f1": 0.8305769460126141,
+    "accuracy": 0.9031751374396948,
+    "automatic_count": 7346,
+    "automatic_coverage": 0.8241893862896892,
+    "automatic_accuracy": 0.9505853525728287,
+    "recall": {
+      "bank_account": 0.9008849557522124,
+      "credit_card": 0.7596774193548387,
+      "credit_reporting": 0.9608524788391778,
+      "debt_collection": 0.5830546265328874,
+      "mortgage": 0.8837209302325582
+    }
+  },
+  "candidate": {
+    "macro_f1": 0.8370198222217098,
+    "accuracy": 0.9064288118478627,
+    "automatic_count": 7504,
+    "automatic_coverage": 0.8419163020307416,
+    "automatic_accuracy": 0.9486940298507462,
+    "recall": {
+      "bank_account": 0.8955752212389381,
+      "credit_card": 0.7596774193548387,
+      "credit_reporting": 0.9603990326481258,
+      "debt_collection": 0.6243032329988851,
+      "mortgage": 0.8744186046511628
+    }
+  },
+  "checks": {
+    "macro_f1_improves": true,
+    "per_class_recall_preserved": true,
+    "sufficient_automatic_predictions": true,
+    "automatic_accuracy_floor": true,
+    "automatic_accuracy_preserved": true,
+    "automatic_coverage_preserved": true
+  },
+  "decision": "candidate_accepted",
+  "selected_run_id": "f8d2fa4071174ad3b799a9719ba4697c",
+  "champion_run_id": "978e2c9d02e0494195e9989a3222fd9d",
+  "candidate_run_id": "f8d2fa4071174ad3b799a9719ba4697c",
+  "acceptance_run_id": "f17bce9553ad432fabd98b08783ad872",
+  "config_sha256": "e28592cace49b2fe6015a918b09fd668080e1a50e7ed603a9abfcb44675dc2b4",
+  "candidate_training_summary_sha256": "c1c276dbb9f8a6fafbd1da3aee790c3154eb9e15d3c92a6970edc9a30258ddd0",
+  "future_source_sha256": "ffa98caff413291dbd81f23633ce3754e31d3bba0db10c73e984d0c3eca6afbb",
+  "git_commit": "8347ad2908c62b967bac2c60b389dd9b41edb8cc",
+  "serving_model_replaced": false,
+  "december_evaluated": false,
+  "note": "Selection decision only; serving deployment is a separate step."
+}

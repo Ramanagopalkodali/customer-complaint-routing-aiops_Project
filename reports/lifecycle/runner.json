@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "started_at": "2026-11-10T21:29:33.777082+00:00",
+  "scope": "Frozen historical November lifecycle",
+  "steps": [],
+  "december_evaluation_requested": false,
+  "initial_active_model_version": "f8d2fa4071174ad3b799a9719ba4697c",
+  "config_sha256": "e28592cace49b2fe6015a918b09fd668080e1a50e7ed603a9abfcb44675dc2b4",
+  "git_commit": "93392659d76e494a18ae730bea0c1a2e8054a301",
+  "monitoring_evidence": "reused_verified_saved_report",
+  "monitoring_report_sha256": "38bca3cebfec88169130ffc997db3cab07f5616387e5ff410f05266c2e3e840c",
+  "outcome": "no_trigger",
+  "deployment_requested": false,
+  "final_active_model_version": "f8d2fa4071174ad3b799a9719ba4697c",
+  "completed_at": "2026-11-10T21:29:34.090494+00:00"
+}

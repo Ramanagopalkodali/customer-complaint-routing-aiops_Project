@@ -215,3 +215,24 @@ stages:
     outs:
     - reports/lifecycle/final:
         cache: false
+  final_checks:
+    cmd: python scripts/run_final_checks.py
+    deps:
+    - scripts/run_final_checks.py
+    - backend
+    - frontend
+    - src
+    - tests
+    - config/lifecycle.json
+    - requirements.lock.txt
+    - artifacts/serving
+    - artifacts/lifecycle/candidate/serving
+    - reports/ingestion_summary.json
+    - reports/training/comparison.json
+    - reports/test/summary.json
+    - reports/lifecycle/final/summary.json
+    outs:
+    - reports/final/full_tests.xml:
+        cache: false
+    - reports/final/tests_summary.json:
+        cache: false

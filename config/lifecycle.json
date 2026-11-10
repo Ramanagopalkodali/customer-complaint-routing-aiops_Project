@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "seed": 42,
+  "champion_training_run_id": "978e2c9d02e0494195e9989a3222fd9d",
+  "periods": {
+    "monitor_and_candidate_train": ["2024-11-01", "2024-11-15"],
+    "candidate_threshold_selection": ["2024-11-16", "2024-11-22"],
+    "candidate_acceptance": ["2024-11-23", "2024-11-30"],
+    "final_evaluation": ["2024-12-01", "2024-12-31"]
+  },
+  "monitoring": {
+    "reference_source": "data/processed/train.csv",
+    "reference_sample_limit": 5000,
+    "batch_sample_limit": 5000,
+    "minimum_batch_rows": 500,
+    "text_length_bins": [0, 100, 250, 500, 1000, 2000, 5000, 10000],
+    "js_divergence_base": 2,
+    "js_divergence_threshold": 0.10,
+    "labeled_macro_f1_floor": 0.80,
+    "trigger_rule": "text_length_jsd > threshold OR predicted_product_jsd > threshold OR labeled_macro_f1 < floor"
+  },
+  "candidate": {
+    "model_type": "linear_svc_calibrated",
+    "training_sources": [
+      "original_training_split",
+      "monitor_and_candidate_train"
+    ],
+    "routing_precision_target": 0.95,
+    "minimum_threshold_selection_count_per_category": 100
+  },
+  "acceptance": {
+    "minimum_macro_f1_improvement": 0.005,
+    "maximum_per_class_recall_drop": 0.05,
+    "minimum_automatic_count": 500,
+    "minimum_automatic_accuracy": 0.94,
+    "maximum_automatic_accuracy_drop": 0.005,
+    "maximum_automatic_coverage_drop": 0.02,
+    "require_all_checks": true,
+    "on_failure": "retain_champion"
+  }
+}

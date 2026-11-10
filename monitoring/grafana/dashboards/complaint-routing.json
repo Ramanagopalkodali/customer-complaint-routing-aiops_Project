@@ -2,7 +2,7 @@
   "uid": "complaint-routing",
   "title": "Complaint Routing \u2014 Application and VM",
   "schemaVersion": 39,
-  "version": 2,
+  "version": 3,
   "timezone": "browser",
   "refresh": "5s",
   "time": {
@@ -589,7 +589,7 @@
       "type": "stat",
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "complaint-prom"
       },
       "gridPos": {
         "h": 5,
@@ -631,7 +631,7 @@
       "type": "stat",
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "complaint-prom"
       },
       "gridPos": {
         "h": 5,
@@ -673,7 +673,7 @@
       "type": "stat",
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "complaint-prom"
       },
       "gridPos": {
         "h": 5,
@@ -715,7 +715,7 @@
       "type": "stat",
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "complaint-prom"
       },
       "gridPos": {
         "h": 5,
@@ -757,7 +757,7 @@
       "type": "stat",
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "complaint-prom"
       },
       "gridPos": {
         "h": 5,
@@ -799,7 +799,7 @@
       "type": "stat",
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "complaint-prom"
       },
       "gridPos": {
         "h": 5,
@@ -841,7 +841,7 @@
       "type": "stat",
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "complaint-prom"
       },
       "gridPos": {
         "h": 5,
@@ -883,7 +883,7 @@
       "type": "stat",
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "complaint-prom"
       },
       "gridPos": {
         "h": 5,

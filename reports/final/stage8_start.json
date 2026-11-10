@@ -1,0 +1,10 @@
+{
+  "backend_health": {
+    "status": "ok",
+    "model_version": "f8d2fa4071174ad3b799a9719ba4697c"
+  },
+  "original_bundle_present": true,
+  "candidate_bundle_present": true,
+  "mlflow_database_present": true,
+  "mlflow_artifacts_present": true
+}

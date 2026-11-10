@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "active_model_version": "f8d2fa4071174ad3b799a9719ba4697c",
+  "december_evaluation_matches_active_model": true,
+  "lifecycle_reports_present": {
+    "monitoring": true,
+    "acceptance": true,
+    "deployment": true,
+    "final": true,
+    "runner": true
+  }
+}

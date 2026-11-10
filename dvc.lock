@@ -611,3 +611,73 @@ stages:
       md5: 515dae1b48d9e6001814624eefe91aaf.dir
       size: 2796254
       nfiles: 5
+  final_checks:
+    cmd: python scripts/run_final_checks.py
+    deps:
+    - path: artifacts/lifecycle/candidate/serving
+      hash: md5
+      md5: a54e0a3d48afbbb4d55637596444aae3.dir
+      size: 3086606
+      nfiles: 9
+    - path: artifacts/serving
+      hash: md5
+      md5: f9715cc81d005c798cc18420adeb82cf.dir
+      size: 3085867
+      nfiles: 9
+    - path: backend
+      hash: md5
+      md5: d183f771e4e8647e45b8b27731206b90.dir
+      size: 69489
+      nfiles: 13
+    - path: config/lifecycle.json
+      hash: md5
+      md5: bff252c9102e6b5b2cc8f3dd7f58ac40
+      size: 1436
+    - path: frontend
+      hash: md5
+      md5: 092b6c266ad8e2c569ae76a32969bb89.dir
+      size: 12790
+      nfiles: 2
+    - path: reports/ingestion_summary.json
+      hash: md5
+      md5: 33c269b41f0dd880d2ad1b3cfd0e6f47
+      size: 2227
+    - path: reports/lifecycle/final/summary.json
+      hash: md5
+      md5: c338fbe14a021f324bf0375313a0a03d
+      size: 1679
+    - path: reports/test/summary.json
+      hash: md5
+      md5: 12d6479391aa1017a52adb0739858903
+      size: 931
+    - path: reports/training/comparison.json
+      hash: md5
+      md5: e39a0c2ff0967f98f29f7b725010d8ae
+      size: 1449
+    - path: requirements.lock.txt
+      hash: md5
+      md5: 176cccf39caff1366ad95e8ab150b464
+      size: 3012
+    - path: scripts/run_final_checks.py
+      hash: md5
+      md5: 416afffe5ecc425d17fbc659325995fc
+      size: 3023
+    - path: src
+      hash: md5
+      md5: 0131f318a93432081bb1dd1666b73997.dir
+      size: 222198
+      nfiles: 21
+    - path: tests
+      hash: md5
+      md5: c452f2e536aef72c9d3d9550e9df887a.dir
+      size: 132696
+      nfiles: 19
+    outs:
+    - path: reports/final/full_tests.xml
+      hash: md5
+      md5: 4bf5a2114fd03bb9f4e26fb0882512ac
+      size: 9229
+    - path: reports/final/tests_summary.json
+      hash: md5
+      md5: dc20cf04dc7dfe470987a10105f7662c
+      size: 566

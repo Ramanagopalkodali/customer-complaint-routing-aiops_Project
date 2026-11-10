@@ -1,0 +1,7 @@
+{
+  "remote_name": "localstore",
+  "remote_path": "/home/ramscp/complaint-routing-dvc-store",
+  "scope": "Same-VM artifact recovery store",
+  "off_machine_backup": false,
+  "fresh_checkout_recovery_verified": false
+}

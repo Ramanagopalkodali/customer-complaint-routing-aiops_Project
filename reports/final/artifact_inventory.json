@@ -1,0 +1,32 @@
+{
+  "data/raw": {
+    "exists": true,
+    "files": 3,
+    "size_MiB": 191.76
+  },
+  "data/processed": {
+    "exists": true,
+    "files": 4,
+    "size_MiB": 418.35
+  },
+  "artifacts/serving": {
+    "exists": true,
+    "files": 9,
+    "size_MiB": 2.94
+  },
+  "artifacts/lifecycle": {
+    "exists": true,
+    "files": 12,
+    "size_MiB": 5.88
+  },
+  "mlruns": {
+    "exists": true,
+    "files": 56,
+    "size_MiB": 24.44
+  },
+  "mlflow.db": {
+    "exists": true,
+    "files": 1,
+    "size_MiB": 0.7
+  }
+}

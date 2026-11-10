@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "selected_training_run_id": "f8d2fa4071174ad3b799a9719ba4697c",
+  "serving_bundle": "artifacts/lifecycle/candidate/serving",
+  "counts": {
+    "total": 77,
+    "passed": 77,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "pytest_exit_code": 0,
+  "git_commit": "7c3050693f50c9868b503da470f4b415b5ee195e",
+  "completed_at": "2026-11-10T21:55:37.235968+00:00",
+  "scope": "Complete automated test suite with candidate HTTP tests and original-bundle integrity tests. No retraining or December reevaluation; this is not a load test."
+}

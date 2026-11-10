@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "backup_directory": "/home/ramscp/complaint-routing-mlflow-backups/20261110T220158426987Z",
+  "database_integrity": "ok",
+  "saved_run_count": 10,
+  "artifact_files": 56,
+  "scope": "Same-VM MLflow snapshot; original artifact paths may require restoration",
+  "off_machine_backup": false
+}

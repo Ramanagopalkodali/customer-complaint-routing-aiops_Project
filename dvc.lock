@@ -210,3 +210,404 @@ stages:
       hash: md5
       md5: 98aa03301b04ec996d9b79b33de22b22
       size: 488
+  lifecycle_tests:
+    cmd: python -m pytest tests/test_lifecycle_monitoring.py 
+      tests/test_candidate_acceptance.py tests/test_lifecycle_metrics.py -q 
+      --junitxml=reports/lifecycle/ci_tests.xml
+    deps:
+    - path: backend/lifecycle_metrics.py
+      hash: md5
+      md5: 1bdec2a65261c5ef2c3cdb74b7096cd2
+      size: 5091
+    - path: backend/model_loader.py
+      hash: md5
+      md5: 1e367615cc17ccc70870728f2b6b4235
+      size: 1634
+    - path: config/lifecycle.json
+      hash: md5
+      md5: bff252c9102e6b5b2cc8f3dd7f58ac40
+      size: 1436
+    - path: requirements.lock.txt
+      hash: md5
+      md5: 176cccf39caff1366ad95e8ab150b464
+      size: 3012
+    - path: src/accept_candidate.py
+      hash: md5
+      md5: 4ec07f351a4d155d23ddc43c5f311e57
+      size: 10811
+    - path: src/monitor_lifecycle.py
+      hash: md5
+      md5: c883acbfbcf4b22ca228e12297b7960a
+      size: 10845
+    - path: src/select_threshold.py
+      hash: md5
+      md5: 6eb1b59b854d1b4a280bc73c671565d1
+      size: 6806
+    - path: tests/test_candidate_acceptance.py
+      hash: md5
+      md5: 4c5f382e54a4de5c010f2712aeaa859a
+      size: 1617
+    - path: tests/test_lifecycle_metrics.py
+      hash: md5
+      md5: 337d0480a57ddecfdf8a18be7c6a676b
+      size: 2015
+    - path: tests/test_lifecycle_monitoring.py
+      hash: md5
+      md5: fc4afe2f0d009f1a50359d4e7d0785be
+      size: 1197
+    outs:
+    - path: reports/lifecycle/ci_tests.xml
+      hash: md5
+      md5: a4e2012dd2a229daaf29d72abb517bbe
+      size: 2816
+  lifecycle_monitor:
+    cmd: python -m src.monitor_lifecycle
+    deps:
+    - path: artifacts/serving
+      hash: md5
+      md5: f9715cc81d005c798cc18420adeb82cf.dir
+      size: 3085867
+      nfiles: 9
+    - path: backend/model_loader.py
+      hash: md5
+      md5: 1e367615cc17ccc70870728f2b6b4235
+      size: 1634
+    - path: config/lifecycle.json
+      hash: md5
+      md5: bff252c9102e6b5b2cc8f3dd7f58ac40
+      size: 1436
+    - path: data/processed/future.csv
+      hash: md5
+      md5: d0696c0fd8d95092945219b7478b1eff
+      size: 111948097
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 71b0c18bae2ab06d9f3621a2a3560baf
+      size: 175913975
+    - path: reports/lifecycle/ci_tests.xml
+      hash: md5
+      md5: a4e2012dd2a229daaf29d72abb517bbe
+      size: 2816
+    - path: requirements.lock.txt
+      hash: md5
+      md5: 176cccf39caff1366ad95e8ab150b464
+      size: 3012
+    - path: src/monitor_lifecycle.py
+      hash: md5
+      md5: c883acbfbcf4b22ca228e12297b7960a
+      size: 10845
+    - path: src/select_threshold.py
+      hash: md5
+      md5: 6eb1b59b854d1b4a280bc73c671565d1
+      size: 6806
+    outs:
+    - path: artifacts/lifecycle/drift_reference.json
+      hash: md5
+      md5: 095ad9e90b2886380c610a1088c13d88
+      size: 1076
+    - path: reports/lifecycle/monitoring.json
+      hash: md5
+      md5: abb515d73c182227157f6978eefd4bc8
+      size: 1695
+  lifecycle_candidate_demo:
+    cmd: python -m src.retrain_candidate --demonstration
+    deps:
+    - path: artifacts/serving
+      hash: md5
+      md5: f9715cc81d005c798cc18420adeb82cf.dir
+      size: 3085867
+      nfiles: 9
+    - path: backend/model_loader.py
+      hash: md5
+      md5: 1e367615cc17ccc70870728f2b6b4235
+      size: 1634
+    - path: config/lifecycle.json
+      hash: md5
+      md5: bff252c9102e6b5b2cc8f3dd7f58ac40
+      size: 1436
+    - path: data/processed/future.csv
+      hash: md5
+      md5: d0696c0fd8d95092945219b7478b1eff
+      size: 111948097
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 71b0c18bae2ab06d9f3621a2a3560baf
+      size: 175913975
+    - path: reports/lifecycle/monitoring.json
+      hash: md5
+      md5: abb515d73c182227157f6978eefd4bc8
+      size: 1695
+    - path: requirements.lock.txt
+      hash: md5
+      md5: 176cccf39caff1366ad95e8ab150b464
+      size: 3012
+    - path: src/monitor_lifecycle.py
+      hash: md5
+      md5: c883acbfbcf4b22ca228e12297b7960a
+      size: 10845
+    - path: src/retrain_candidate.py
+      hash: md5
+      md5: f5b680b9824bed1c0e4aa16c4e86b9bf
+      size: 12445
+    - path: src/select_threshold.py
+      hash: md5
+      md5: 6eb1b59b854d1b4a280bc73c671565d1
+      size: 6806
+    outs:
+    - path: artifacts/lifecycle/candidate/model.joblib
+      hash: md5
+      md5: 559f3fd26b662709d3fa063cab32d137
+      size: 3076762
+    - path: artifacts/lifecycle/candidate/policy.json
+      hash: md5
+      md5: 55a50b41d9063e8c4ee292bcc72a1365
+      size: 759
+    - path: reports/lifecycle/candidate
+      hash: md5
+      md5: 2b35ba498a3aef421a8b3c42ad5595c4.dir
+      size: 593189
+      nfiles: 3
+  lifecycle_accept:
+    cmd: python -m src.accept_candidate
+    deps:
+    - path: artifacts/lifecycle/candidate/model.joblib
+      hash: md5
+      md5: 559f3fd26b662709d3fa063cab32d137
+      size: 3076762
+    - path: artifacts/lifecycle/candidate/policy.json
+      hash: md5
+      md5: 55a50b41d9063e8c4ee292bcc72a1365
+      size: 759
+    - path: artifacts/serving
+      hash: md5
+      md5: f9715cc81d005c798cc18420adeb82cf.dir
+      size: 3085867
+      nfiles: 9
+    - path: backend/model_loader.py
+      hash: md5
+      md5: 1e367615cc17ccc70870728f2b6b4235
+      size: 1634
+    - path: config/lifecycle.json
+      hash: md5
+      md5: bff252c9102e6b5b2cc8f3dd7f58ac40
+      size: 1436
+    - path: data/processed/future.csv
+      hash: md5
+      md5: d0696c0fd8d95092945219b7478b1eff
+      size: 111948097
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 71b0c18bae2ab06d9f3621a2a3560baf
+      size: 175913975
+    - path: reports/lifecycle/candidate/training_summary.json
+      hash: md5
+      md5: e9b9e35ac87fb11141c2fc0239121468
+      size: 1849
+    - path: requirements.lock.txt
+      hash: md5
+      md5: 176cccf39caff1366ad95e8ab150b464
+      size: 3012
+    - path: src/accept_candidate.py
+      hash: md5
+      md5: 4ec07f351a4d155d23ddc43c5f311e57
+      size: 10811
+    - path: src/monitor_lifecycle.py
+      hash: md5
+      md5: c883acbfbcf4b22ca228e12297b7960a
+      size: 10845
+    - path: src/select_threshold.py
+      hash: md5
+      md5: 6eb1b59b854d1b4a280bc73c671565d1
+      size: 6806
+    outs:
+    - path: reports/lifecycle/acceptance
+      hash: md5
+      md5: 73b0f95433e33b1454a6e5eb6b164adb.dir
+      size: 1178039
+      nfiles: 3
+  lifecycle_package:
+    cmd: python -m src.package_candidate
+    deps:
+    - path: artifacts/lifecycle/candidate/model.joblib
+      hash: md5
+      md5: 559f3fd26b662709d3fa063cab32d137
+      size: 3076762
+    - path: artifacts/lifecycle/candidate/policy.json
+      hash: md5
+      md5: 55a50b41d9063e8c4ee292bcc72a1365
+      size: 759
+    - path: artifacts/serving
+      hash: md5
+      md5: f9715cc81d005c798cc18420adeb82cf.dir
+      size: 3085867
+      nfiles: 9
+    - path: backend/model_loader.py
+      hash: md5
+      md5: 1e367615cc17ccc70870728f2b6b4235
+      size: 1634
+    - path: config/lifecycle.json
+      hash: md5
+      md5: bff252c9102e6b5b2cc8f3dd7f58ac40
+      size: 1436
+    - path: reports/lifecycle/acceptance/decision.json
+      hash: md5
+      md5: 738053bc2548366196fb187a19fc9461
+      size: 2014
+    - path: reports/lifecycle/candidate/training_summary.json
+      hash: md5
+      md5: e9b9e35ac87fb11141c2fc0239121468
+      size: 1849
+    - path: requirements.lock.txt
+      hash: md5
+      md5: 176cccf39caff1366ad95e8ab150b464
+      size: 3012
+    - path: src/accept_candidate.py
+      hash: md5
+      md5: 4ec07f351a4d155d23ddc43c5f311e57
+      size: 10811
+    - path: src/monitor_lifecycle.py
+      hash: md5
+      md5: c883acbfbcf4b22ca228e12297b7960a
+      size: 10845
+    - path: src/package_candidate.py
+      hash: md5
+      md5: 79151c99905a1937368ce45be32794ce
+      size: 7024
+    - path: src/select_threshold.py
+      hash: md5
+      md5: 6eb1b59b854d1b4a280bc73c671565d1
+      size: 6806
+    outs:
+    - path: artifacts/lifecycle/candidate/serving
+      hash: md5
+      md5: a54e0a3d48afbbb4d55637596444aae3.dir
+      size: 3086606
+      nfiles: 9
+    - path: reports/lifecycle/candidate_packaging.json
+      hash: md5
+      md5: bac7971b69f0c56f9f666feb11a1d075
+      size: 942
+  lifecycle_deployment_record:
+    cmd: python scripts/verify_lifecycle_deployment.py
+    deps:
+    - path: artifacts/lifecycle/candidate/serving
+      hash: md5
+      md5: a54e0a3d48afbbb4d55637596444aae3.dir
+      size: 3086606
+      nfiles: 9
+    - path: artifacts/serving
+      hash: md5
+      md5: f9715cc81d005c798cc18420adeb82cf.dir
+      size: 3085867
+      nfiles: 9
+    - path: backend/main.py
+      hash: md5
+      md5: c383bc5d3af225e3f293cfc2bc4b1888
+      size: 7844
+    - path: backend/model_loader.py
+      hash: md5
+      md5: 1e367615cc17ccc70870728f2b6b4235
+      size: 1634
+    - path: compose.override.yaml
+      hash: md5
+      md5: 4378e92bf352ac8aa22af7f22b60f190
+      size: 176
+    - path: compose.yaml
+      hash: md5
+      md5: 1894e842c20b985f7c1cee9e61167da7
+      size: 2996
+    - path: config/lifecycle.json
+      hash: md5
+      md5: bff252c9102e6b5b2cc8f3dd7f58ac40
+      size: 1436
+    - path: reports/lifecycle/acceptance/decision.json
+      hash: md5
+      md5: 738053bc2548366196fb187a19fc9461
+      size: 2014
+    - path: reports/lifecycle/candidate_packaging.json
+      hash: md5
+      md5: bac7971b69f0c56f9f666feb11a1d075
+      size: 942
+    - path: requirements.lock.txt
+      hash: md5
+      md5: 176cccf39caff1366ad95e8ab150b464
+      size: 3012
+    - path: scripts/verify_lifecycle_deployment.py
+      hash: md5
+      md5: 67eac8a85ef7c5a20d01ed52e24a0c37
+      size: 8985
+    - path: src/monitor_lifecycle.py
+      hash: md5
+      md5: c883acbfbcf4b22ca228e12297b7960a
+      size: 10845
+    outs:
+    - path: reports/lifecycle/deployment_verification.json
+      hash: md5
+      md5: 5da926b3d1517f4136cea5092976551b
+      size: 8172
+  lifecycle_final_record:
+    cmd: python -m src.evaluate_lifecycle_final
+    deps:
+    - path: artifacts/lifecycle/candidate/serving
+      hash: md5
+      md5: a54e0a3d48afbbb4d55637596444aae3.dir
+      size: 3086606
+      nfiles: 9
+    - path: backend/model_loader.py
+      hash: md5
+      md5: 1e367615cc17ccc70870728f2b6b4235
+      size: 1634
+    - path: config/lifecycle.json
+      hash: md5
+      md5: bff252c9102e6b5b2cc8f3dd7f58ac40
+      size: 1436
+    - path: data/processed/future.csv
+      hash: md5
+      md5: d0696c0fd8d95092945219b7478b1eff
+      size: 111948097
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 71b0c18bae2ab06d9f3621a2a3560baf
+      size: 175913975
+    - path: reports/lifecycle/acceptance/decision.json
+      hash: md5
+      md5: 738053bc2548366196fb187a19fc9461
+      size: 2014
+    - path: reports/lifecycle/candidate/training_summary.json
+      hash: md5
+      md5: e9b9e35ac87fb11141c2fc0239121468
+      size: 1849
+    - path: reports/lifecycle/candidate_packaging.json
+      hash: md5
+      md5: bac7971b69f0c56f9f666feb11a1d075
+      size: 942
+    - path: reports/lifecycle/deployment_verification.json
+      hash: md5
+      md5: 5da926b3d1517f4136cea5092976551b
+      size: 8172
+    - path: requirements.lock.txt
+      hash: md5
+      md5: 176cccf39caff1366ad95e8ab150b464
+      size: 3012
+    - path: src/accept_candidate.py
+      hash: md5
+      md5: 4ec07f351a4d155d23ddc43c5f311e57
+      size: 10811
+    - path: src/evaluate_lifecycle_final.py
+      hash: md5
+      md5: 59e1108973b8a82d49d3c3c2b721e827
+      size: 8236
+    - path: src/monitor_lifecycle.py
+      hash: md5
+      md5: c883acbfbcf4b22ca228e12297b7960a
+      size: 10845
+    - path: src/select_threshold.py
+      hash: md5
+      md5: 6eb1b59b854d1b4a280bc73c671565d1
+      size: 6806
+    outs:
+    - path: reports/lifecycle/final
+      hash: md5
+      md5: 515dae1b48d9e6001814624eefe91aaf.dir
+      size: 2796254
+      nfiles: 5

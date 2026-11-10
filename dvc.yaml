@@ -2,85 +2,216 @@ stages:
   ingest:
     cmd: python src/ingest.py
     deps:
-      - src/ingest.py
-      - requirements.lock.txt
-      - data/raw
+    - src/ingest.py
+    - requirements.lock.txt
+    - data/raw
     outs:
-      - data/processed
+    - data/processed
     metrics:
-      - reports/ingestion_summary.json:
-          cache: false
-
+    - reports/ingestion_summary.json:
+        cache: false
   validate_data:
     cmd: python -m pytest tests/test_ingest.py -q --junitxml=reports/ingestion_tests.xml
     deps:
-      - src/ingest.py
-      - tests/test_ingest.py
-      - requirements.lock.txt
-      - data/processed
+    - src/ingest.py
+    - tests/test_ingest.py
+    - requirements.lock.txt
+    - data/processed
     outs:
-      - reports/ingestion_tests.xml:
-          cache: false
-
+    - reports/ingestion_tests.xml:
+        cache: false
   train:
     cmd: python src/train.py
     deps:
-      - src/train.py
-      - requirements.lock.txt
-      - data/processed/train.csv
-      - data/processed/validation.csv
-      - reports/ingestion_tests.xml
+    - src/train.py
+    - requirements.lock.txt
+    - data/processed/train.csv
+    - data/processed/validation.csv
+    - reports/ingestion_tests.xml
     outs:
-      - artifacts/training
-      - reports/training:
-          cache: false
-
+    - artifacts/training
+    - reports/training:
+        cache: false
   select_threshold:
     cmd: python src/select_threshold.py
     deps:
-      - src/select_threshold.py
-      - requirements.lock.txt
-      - reports/training
-      - artifacts/training
+    - src/select_threshold.py
+    - requirements.lock.txt
+    - reports/training
+    - artifacts/training
     outs:
-      - artifacts/policy.json
-      - reports/threshold:
-          cache: false
-
+    - artifacts/policy.json
+    - reports/threshold:
+        cache: false
   validate_threshold:
     cmd: python -m pytest tests/test_threshold.py -q --junitxml=reports/threshold_tests.xml
     deps:
-      - src/select_threshold.py
-      - tests/test_threshold.py
-      - requirements.lock.txt
-      - artifacts/policy.json
+    - src/select_threshold.py
+    - tests/test_threshold.py
+    - requirements.lock.txt
+    - artifacts/policy.json
     outs:
-      - reports/threshold_tests.xml:
-          cache: false
-
+    - reports/threshold_tests.xml:
+        cache: false
   evaluate:
     cmd: python -m src.evaluate
     deps:
-      - src/evaluate.py
-      - src/select_threshold.py
-      - requirements.lock.txt
-      - artifacts/training
-      - artifacts/policy.json
-      - reports/threshold_tests.xml
-      - data/processed/test.csv
+    - src/evaluate.py
+    - src/select_threshold.py
+    - requirements.lock.txt
+    - artifacts/training
+    - artifacts/policy.json
+    - reports/threshold_tests.xml
+    - data/processed/test.csv
     outs:
-      - reports/test:
-          cache: false
-
+    - reports/test:
+        cache: false
   export_model:
     cmd: python src/export_model.py
     deps:
-      - src/export_model.py
-      - requirements.lock.txt
-      - artifacts/policy.json
-      - artifacts/training
+    - src/export_model.py
+    - requirements.lock.txt
+    - artifacts/policy.json
+    - artifacts/training
     outs:
-      - artifacts/serving
+    - artifacts/serving
     metrics:
-      - reports/export_model.json:
-          cache: false
+    - reports/export_model.json:
+        cache: false
+  lifecycle_tests:
+    cmd: python -m pytest tests/test_lifecycle_monitoring.py tests/test_candidate_acceptance.py
+      tests/test_lifecycle_metrics.py -q --junitxml=reports/lifecycle/ci_tests.xml
+    deps:
+    - config/lifecycle.json
+    - requirements.lock.txt
+    - src/monitor_lifecycle.py
+    - src/select_threshold.py
+    - backend/model_loader.py
+    - src/accept_candidate.py
+    - backend/lifecycle_metrics.py
+    - tests/test_lifecycle_monitoring.py
+    - tests/test_candidate_acceptance.py
+    - tests/test_lifecycle_metrics.py
+    outs:
+    - reports/lifecycle/ci_tests.xml:
+        cache: false
+  lifecycle_monitor:
+    cmd: python -m src.monitor_lifecycle
+    deps:
+    - config/lifecycle.json
+    - requirements.lock.txt
+    - src/monitor_lifecycle.py
+    - src/select_threshold.py
+    - backend/model_loader.py
+    - reports/lifecycle/ci_tests.xml
+    - data/processed/train.csv
+    - data/processed/future.csv
+    - artifacts/serving
+    outs:
+    - artifacts/lifecycle/drift_reference.json
+    metrics:
+    - reports/lifecycle/monitoring.json:
+        cache: false
+  lifecycle_candidate_demo:
+    desc: Explicit retraining demonstration. This run does not claim that the historical
+      monitoring batch triggered retraining.
+    cmd: python -m src.retrain_candidate --demonstration
+    deps:
+    - config/lifecycle.json
+    - requirements.lock.txt
+    - src/monitor_lifecycle.py
+    - src/select_threshold.py
+    - backend/model_loader.py
+    - src/retrain_candidate.py
+    - reports/lifecycle/monitoring.json
+    - data/processed/train.csv
+    - data/processed/future.csv
+    - artifacts/serving
+    outs:
+    - artifacts/lifecycle/candidate/model.joblib
+    - artifacts/lifecycle/candidate/policy.json
+    - reports/lifecycle/candidate:
+        cache: false
+  lifecycle_accept:
+    cmd: python -m src.accept_candidate
+    deps:
+    - config/lifecycle.json
+    - requirements.lock.txt
+    - src/monitor_lifecycle.py
+    - src/select_threshold.py
+    - backend/model_loader.py
+    - src/accept_candidate.py
+    - reports/lifecycle/candidate/training_summary.json
+    - artifacts/lifecycle/candidate/model.joblib
+    - artifacts/lifecycle/candidate/policy.json
+    - artifacts/serving
+    - data/processed/train.csv
+    - data/processed/future.csv
+    outs:
+    - reports/lifecycle/acceptance:
+        cache: false
+  lifecycle_package:
+    cmd: python -m src.package_candidate
+    deps:
+    - config/lifecycle.json
+    - requirements.lock.txt
+    - src/monitor_lifecycle.py
+    - src/select_threshold.py
+    - backend/model_loader.py
+    - src/package_candidate.py
+    - src/accept_candidate.py
+    - reports/lifecycle/candidate/training_summary.json
+    - reports/lifecycle/acceptance/decision.json
+    - artifacts/lifecycle/candidate/model.joblib
+    - artifacts/lifecycle/candidate/policy.json
+    - artifacts/serving
+    outs:
+    - artifacts/lifecycle/candidate/serving
+    metrics:
+    - reports/lifecycle/candidate_packaging.json:
+        cache: false
+  lifecycle_deployment_record:
+    desc: Recorded live Docker deployment/rollback drill. Frozen so ordinary dvc repro
+      does not restart services. Run the verification script explicitly when a new
+      deployment is intended.
+    frozen: true
+    cmd: python scripts/verify_lifecycle_deployment.py
+    deps:
+    - config/lifecycle.json
+    - requirements.lock.txt
+    - scripts/verify_lifecycle_deployment.py
+    - backend/main.py
+    - backend/model_loader.py
+    - src/monitor_lifecycle.py
+    - compose.yaml
+    - compose.override.yaml
+    - reports/lifecycle/acceptance/decision.json
+    - reports/lifecycle/candidate_packaging.json
+    - artifacts/serving
+    - artifacts/lifecycle/candidate/serving
+    outs:
+    - reports/lifecycle/deployment_verification.json:
+        cache: false
+  lifecycle_final_record:
+    desc: Reserved December evaluation record. Frozen to prevent ordinary pipeline
+      reproduction from repeating the final holdout evaluation.
+    frozen: true
+    cmd: python -m src.evaluate_lifecycle_final
+    deps:
+    - config/lifecycle.json
+    - requirements.lock.txt
+    - src/monitor_lifecycle.py
+    - src/select_threshold.py
+    - backend/model_loader.py
+    - src/evaluate_lifecycle_final.py
+    - src/accept_candidate.py
+    - reports/lifecycle/acceptance/decision.json
+    - reports/lifecycle/candidate/training_summary.json
+    - reports/lifecycle/candidate_packaging.json
+    - reports/lifecycle/deployment_verification.json
+    - artifacts/lifecycle/candidate/serving
+    - data/processed/train.csv
+    - data/processed/future.csv
+    outs:
+    - reports/lifecycle/final:
+        cache: false

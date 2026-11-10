@@ -54,6 +54,13 @@ def main():
             )
         return result.stdout
 
+    # Create writable bind-mount directories before Docker can create them as root.
+    for relative in ("logs", "reports", ".dvc/tmp"):
+        directory = checkout / relative
+        directory.mkdir(parents=True, exist_ok=True)
+        if not os.access(directory, os.W_OK):
+            raise PermissionError(f"Recovery directory is not writable: {directory}")
+
     # These edits affect only the disposable recovery checkout.
     path = checkout / "compose.yaml"
     config = yaml.safe_load(path.read_text())

@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "checkout": "/home/ramscp/complaint-routing-recovery-checks/checkout_jtq800dw",
+  "remote": "/home/ramscp/complaint-routing-dvc-store",
+  "scope": "Same-VM artifact recovery and portable inference verification",
+  "docker_deployment_tested": false,
+  "off_machine_backup": false,
+  "source_commit": "05df7dd8d6f6d3ae2f1f89a7dc4985834adda9f6",
+  "isolated_cache": "/home/ramscp/complaint-routing-recovery-checks/checkout_jtq800dw/.dvc/cache",
+  "cache_started_empty": true,
+  "dvc_pull_succeeded": true,
+  "model_checks": {
+    "original": {
+      "status": "PASS",
+      "training_run_id": "978e2c9d02e0494195e9989a3222fd9d",
+      "integrity_and_equivalence": "PASS",
+      "smoke_examples": 6
+    },
+    "candidate": {
+      "status": "PASS",
+      "training_run_id": "f8d2fa4071174ad3b799a9719ba4697c",
+      "integrity_and_equivalence": "PASS",
+      "smoke_examples": 6
+    }
+  },
+  "inference_without_tracking_database": true,
+  "completed_at": "2026-11-10T22:02:25.223945+00:00"
+}

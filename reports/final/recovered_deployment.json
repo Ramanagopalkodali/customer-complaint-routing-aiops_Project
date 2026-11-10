@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "checkout": "/home/ramscp/complaint-routing-recovery-checks/checkout_jtq800dw",
+  "scope": "Recovered-checkout Docker build and HTTP smoke verification",
+  "expected_model_version": "f8d2fa4071174ad3b799a9719ba4697c",
+  "ports": {
+    "backend": 8002,
+    "frontend": 8502
+  },
+  "images_built_from_recovered_checkout": true,
+  "backend_health": {
+    "status": "ok",
+    "model_version": "f8d2fa4071174ad3b799a9719ba4697c"
+  },
+  "single_prediction": "PASS",
+  "invalid_input_status": 422,
+  "frontend_health": "PASS",
+  "pipeline_model_identity": "PASS",
+  "tracking_database_present": false,
+  "recovery_containers_removed": true
+}

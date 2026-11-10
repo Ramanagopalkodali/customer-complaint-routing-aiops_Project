@@ -1,0 +1,20 @@
+backend-1  | INFO:     Started server process [1]
+backend-1  | INFO:     Waiting for application startup.
+backend-1  | ERROR:    Traceback (most recent call last):
+backend-1  |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 694, in lifespan
+backend-1  |     async with self.lifespan_context(app) as maybe_state:
+backend-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+backend-1  |     return await anext(self.gen)
+backend-1  |            ^^^^^^^^^^^^^^^^^^^^^
+backend-1  |   File "/app/backend/main.py", line 131, in lifespan
+backend-1  |     logging.FileHandler(ROOT / "logs/backend.log"),
+backend-1  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend-1  |   File "/usr/local/lib/python3.11/logging/__init__.py", line 1181, in __init__
+backend-1  |     StreamHandler.__init__(self, self._open())
+backend-1  |                                  ^^^^^^^^^^^^
+backend-1  |   File "/usr/local/lib/python3.11/logging/__init__.py", line 1213, in _open
+backend-1  |     return open_func(self.baseFilename, self.mode,
+backend-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend-1  | PermissionError: [Errno 13] Permission denied: '/app/logs/backend.log'
+backend-1  | 
+backend-1  | ERROR:    Application startup failed. Exiting.

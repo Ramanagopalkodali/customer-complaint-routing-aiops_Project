@@ -1,0 +1,7 @@
+services:
+  backend:
+    volumes:
+      - type: bind
+        source: ${SERVING_BUNDLE_PATH:-./artifacts/serving}
+        target: /app/artifacts/serving
+        read_only: true

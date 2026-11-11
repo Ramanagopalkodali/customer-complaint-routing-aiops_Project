@@ -1,0 +1,212 @@
+
+Running dependencies: ['/home/ramscp/miniforge3/envs/complaint-aiops/bin/python', '-m', 'pip', 'check']
+No broken requirements found.
+
+Running compose_configuration: ['docker', 'compose', 'config', '--quiet']
+
+Running stop_services: ['docker', 'compose', 'down']
+
+Running ingest: ['dvc', 'repro', '--single-item', '--force', '--no-run-cache', 'ingest']
+Running stage 'ingest':
+> python src/ingest.py
+2026-11-12 02:38:48,401 INFO START: Ray archive reading; two CPU workers
+2026-11-12 02:38:48,424	WARNING authentication_token_setup.py:85 -- Token authentication is enabled for this Ray cluster. Set RAY_AUTH_MODE=disabled to opt out. For more information, see https://docs.ray.io/en/latest/ray-security/token-auth.html
+2026-11-12 02:38:50,253	INFO worker.py:2033 -- Started a local Ray instance.
+2026-11-12 02:38:57,613 INFO Archive complete: cfpb_2024_08_10.zip {'input_rows': 824514, 'excluded_product': 15823, 'missing_narrative': 587669, 'candidate_rows': 221022}
+2026-11-12 02:38:58,411 INFO Archive complete: cfpb_2024_04_07.zip {'input_rows': 839903, 'excluded_product': 19211, 'candidate_rows': 265014, 'missing_narrative': 555678}
+2026-11-12 02:39:02,932 INFO Archive complete: cfpb_2024_11_12.zip {'input_rows': 591058, 'missing_narrative': 431548, 'candidate_rows': 148269, 'excluded_product': 11241}
+2026-11-12 02:39:02,933 INFO Deduplicating and checking chronological splits
+2026-11-12 02:39:06,419 INFO train: {'candidate_rows': 265014, 'output_rows': 138334, 'duplicates_removed': 126680, 'class_counts': {'bank_account': 9630, 'credit_card': 10524, 'credit_reporting': 99703, 'debt_collection': 14576, 'mortgage': 3901}, 'date_min': '2024-04-01', 'date_max': '2024-07-31'}
+2026-11-12 02:39:08,446 INFO validation: {'candidate_rows': 144518, 'output_rows': 74277, 'duplicates_removed': 70241, 'class_counts': {'bank_account': 4940, 'credit_card': 5261, 'credit_reporting': 53795, 'debt_collection': 8161, 'mortgage': 2120}, 'date_min': '2024-08-01', 'date_max': '2024-09-30'}
+2026-11-12 02:39:09,498 INFO test: {'candidate_rows': 76504, 'output_rows': 38806, 'duplicates_removed': 37698, 'class_counts': {'bank_account': 2615, 'credit_card': 2658, 'credit_reporting': 27833, 'debt_collection': 4688, 'mortgage': 1012}, 'date_min': '2024-10-01', 'date_max': '2024-10-31'}
+2026-11-12 02:39:11,729 INFO future: {'candidate_rows': 148269, 'output_rows': 79358, 'duplicates_removed': 68911, 'class_counts': {'bank_account': 5632, 'credit_card': 5233, 'credit_reporting': 57390, 'debt_collection': 9080, 'mortgage': 2023}, 'date_min': '2024-11-01', 'date_max': '2024-12-31'}
+2026-11-12 02:39:11,812 INFO PASS: 2,255,475 rows checked in 23.41 seconds; 96341.28 rows/sec
+2026-11-12 02:39:11,812 INFO Saved report: /home/ramscp/customer-complaint-routing-aiops_Project/reports/ingestion_summary.json
+Updating lock file 'dvc.lock'
+
+To track the changes with git, run:
+
+	git add dvc.lock
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+Use `dvc push` to send your updates to remote storage.
+
+Running validate_data: ['dvc', 'repro', '--single-item', '--force', '--no-run-cache', 'validate_data']
+Running stage 'validate_data':
+> python -m pytest tests/test_ingest.py -q --junitxml=reports/ingestion_tests.xml
+..............                                                           [100%]
+- generated xml file: /home/ramscp/customer-complaint-routing-aiops_Project/reports/ingestion_tests.xml -
+14 passed in 0.15s
+Updating lock file 'dvc.lock'
+
+To track the changes with git, run:
+
+	git add dvc.lock
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+Use `dvc push` to send your updates to remote storage.
+
+Running train: ['dvc', 'repro', '--single-item', '--force', '--no-run-cache', 'train']
+Running stage 'train':
+> python src/train.py
+2026-11-12 02:39:17,375 INFO Loaded 138,334 training and 74,277 validation rows
+2026-11-12 02:39:18,082 INFO START training: logistic_regression
+2026/11/12 02:39:55 WARNING mlflow.sklearn: Unrecognized dataset type <class 'pandas.core.series.Series'>. Dataset logging skipped.
+2026/11/12 02:40:54 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
+2026-11-12 02:40:55,633 INFO COMPLETE logistic_regression: macro-F1=0.8169 accuracy=0.8753 run=cb42495866dd4b89921579007474d27b
+2026-11-12 02:40:55,643 INFO START training: linear_svc_calibrated
+2026/11/12 02:42:18 WARNING mlflow.sklearn: Unrecognized dataset type <class 'pandas.core.series.Series'>. Dataset logging skipped.
+2026/11/12 02:43:25 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
+2026-11-12 02:43:26,208 INFO COMPLETE linear_svc_calibrated: macro-F1=0.8297 accuracy=0.8986 run=376d762990d44d59af5080825e9be19a
+2026-11-12 02:43:26,231 INFO PASS: selected linear_svc_calibrated using validation macro-F1
+2026-11-12 02:43:26,231 INFO Results saved in /home/ramscp/customer-complaint-routing-aiops_Project/reports/training
+Updating lock file 'dvc.lock'
+
+To track the changes with git, run:
+
+	git add dvc.lock
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+Use `dvc push` to send your updates to remote storage.
+
+Running select_threshold: ['dvc', 'repro', '--single-item', '--force', '--no-run-cache', 'select_threshold']
+Running stage 'select_threshold':
+> python src/select_threshold.py
+2026-11-12 02:43:28,665 INFO Saved policy:
+{
+  "policy_version": 2,
+  "mode": "per_predicted_category",
+  "thresholds": {
+    "bank_account": 0.74,
+    "credit_card": 0.86,
+    "credit_reporting": 0.67,
+    "debt_collection": 0.98,
+    "mortgage": 0.69
+  },
+  "default_action": "human_review",
+  "review_rule": "review if category has no threshold or confidence is below it",
+  "model_name": "linear_svc_calibrated",
+  "training_run_id": "376d762990d44d59af5080825e9be19a",
+  "model_sha256": "da6aee1dd9809a18bacc0f6075b48cd2b198513e0bf391343f9e83c626608c60",
+  "validation_predictions_sha256": "3283c46e40355c273709b69ee9b4bae6133fd6c35363e40dfd74bc52724d48a9",
+  "target_validation_routing_precision": 0.95,
+  "minimum_validation_automatic_count_per_category": 100,
+  "validation_rows": 74277,
+  "automatic_count": 60066,
+  "coverage": 0.808675633103114,
+  "automatic_accuracy": 0.950987247361236,
+  "test_set_used": false
+}
+2026-11-12 02:43:28,667 INFO Validation team routing:
+predicted_category  threshold  automatically_routed  correctly_routed  routing_precision
+      bank_account       0.74                  3676              3496           0.951034
+       credit_card       0.86                  1903              1815           0.953757
+  credit_reporting       0.67                 52549             49965           0.950827
+   debt_collection       0.98                   294               284           0.965986
+          mortgage       0.69                  1644              1562           0.950122
+Updating lock file 'dvc.lock'
+
+To track the changes with git, run:
+
+	git add dvc.lock
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+Use `dvc push` to send your updates to remote storage.
+
+Running validate_threshold: ['dvc', 'repro', '--single-item', '--force', '--no-run-cache', 'validate_threshold']
+Running stage 'validate_threshold':
+> python -m pytest tests/test_threshold.py -q --junitxml=reports/threshold_tests.xml
+...........                                                              [100%]
+- generated xml file: /home/ramscp/customer-complaint-routing-aiops_Project/reports/threshold_tests.xml -
+11 passed in 0.25s
+Updating lock file 'dvc.lock'
+
+To track the changes with git, run:
+
+	git add dvc.lock
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+Use `dvc push` to send your updates to remote storage.
+
+Running evaluate: ['dvc', 'repro', '--single-item', '--force', '--no-run-cache', 'evaluate']
+Running stage 'evaluate':
+> python -m src.evaluate
+2026-11-12 02:43:32,347 INFO Evaluating frozen model on 38806 October complaints
+2026-11-12 02:43:37,900 INFO Evaluation complete:
+{
+  "model_name": "linear_svc_calibrated",
+  "thresholds": {
+    "bank_account": 0.74,
+    "credit_card": 0.86,
+    "credit_reporting": 0.67,
+    "debt_collection": 0.98,
+    "mortgage": 0.69
+  },
+  "metrics": {
+    "test_macro_f1": 0.8264181985761796,
+    "test_accuracy": 0.8952223882904705,
+    "test_automatic_coverage": 0.8041282275936711,
+    "test_review_rate": 0.19587177240632891,
+    "test_automatic_count": 31205,
+    "test_automatic_accuracy": 0.9466111200128184
+  },
+  "test_rows": 38806,
+  "git_commit": "40ec18821248d1f88140f751a09f8e97d13e0f91",
+  "training_run_id": "376d762990d44d59af5080825e9be19a",
+  "evaluation_run_id": "01ef34b1c23448c1a659d0679b12500b",
+  "policy_sha256": "56a5f87cd119f4483175d8e37ba2397bef406fc42878dafaa505648c11be5bc3",
+  "test_sha256": "a5c1a686c587f55cea7acc3d9d57a9f35a69e1e0771b71481df1f32919bbb2b0",
+  "model_probability_checks": "PASS",
+  "thresholds_changed_using_test": false
+}
+2026-11-12 02:43:37,901 INFO Saved results: /home/ramscp/customer-complaint-routing-aiops_Project/reports/test
+Updating lock file 'dvc.lock'
+
+To track the changes with git, run:
+
+	git add dvc.lock
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+Use `dvc push` to send your updates to remote storage.
+
+Running export_model: ['dvc', 'repro', '--single-item', '--force', '--no-run-cache', 'export_model']
+Running stage 'export_model':
+> python src/export_model.py
+2026-11-12 02:43:40,855 INFO Packaging selected model: linear_svc_calibrated
+2026/11/12 02:43:40 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
+2026-11-12 02:43:41,277 INFO Export successful:
+{
+  "status": "PASS",
+  "bundle": "artifacts/serving",
+  "model_name": "linear_svc_calibrated",
+  "training_run_id": "376d762990d44d59af5080825e9be19a",
+  "source_model_sha256": "da6aee1dd9809a18bacc0f6075b48cd2b198513e0bf391343f9e83c626608c60",
+  "policy_sha256": "56a5f87cd119f4483175d8e37ba2397bef406fc42878dafaa505648c11be5bc3",
+  "class_check": "PASS",
+  "prediction_equivalence": "PASS",
+  "probability_equivalence": "PASS",
+  "smoke_examples": 5,
+  "retraining_performed": false
+}
+Updating lock file 'dvc.lock'
+
+To track the changes with git, run:
+
+	git add dvc.lock
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+Use `dvc push` to send your updates to remote storage.

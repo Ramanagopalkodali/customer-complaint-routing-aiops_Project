@@ -1,0 +1,641 @@
+
+source_commit: ['git', 'rev-parse', 'HEAD']
+1a1af3f7daf3e2f38eaae5a2f590576f30020497
+
+baseline_freshness: ['dvc', 'status', '--json', 'ingest', 'validate_data', 'train', 'select_threshold', 'validate_threshold', 'evaluate', 'export_model']
+{}
+
+compose_configuration: ['docker', 'compose', '-f', 'compose.yaml', '-f', 'compose.override.yaml', 'config', '--quiet']
+
+stop_services: ['docker', 'compose', '-f', 'compose.yaml', '-f', 'compose.override.yaml', 'down']
+
+build_applications: ['docker', 'compose', '-f', 'compose.yaml', '-f', 'compose.override.yaml', 'build', 'backend', 'frontend']
+ Image complaint-routing-backend:local Building
+ Image complaint-routing-frontend:local Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.41kB done
+#1 DONE 0.0s
+
+#2 [frontend internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.12kB done
+#2 DONE 0.0s
+
+#3 [backend internal] load metadata for docker.io/library/python@sha256:a83ba18aef0f865b1a4a611c2cf460fe446f2795673bbb9fe43be570439e3b39
+#3 ...
+
+#4 [auth] library/python:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#3 [backend internal] load metadata for docker.io/library/python@sha256:a83ba18aef0f865b1a4a611c2cf460fe446f2795673bbb9fe43be570439e3b39
+#3 DONE 3.8s
+
+#5 [frontend internal] load .dockerignore
+#5 transferring context: 181B done
+#5 DONE 0.0s
+
+#6 [frontend internal] load build context
+#6 transferring context: 140B done
+#6 DONE 0.0s
+
+#7 [frontend dependencies 1/5] FROM docker.io/library/python@sha256:a83ba18aef0f865b1a4a611c2cf460fe446f2795673bbb9fe43be570439e3b39
+#7 resolve docker.io/library/python@sha256:a83ba18aef0f865b1a4a611c2cf460fe446f2795673bbb9fe43be570439e3b39 0.0s done
+#7 DONE 0.0s
+
+#8 [frontend dependencies 5/5] RUN python -m pip install --no-cache-dir -r requirements.lock.txt     && python -m pip check
+#8 CACHED
+
+#9 [frontend dependencies 4/5] COPY requirements.lock.txt .
+#9 CACHED
+
+#10 [backend internal] load build context
+#10 transferring context: 3.09MB 0.0s done
+#10 DONE 0.0s
+
+#11 [frontend frontend 1/1] COPY frontend/ frontend/
+#11 CACHED
+
+#12 [backend backend 1/3] COPY backend/ backend/
+#12 CACHED
+
+#13 [backend dependencies 4/5] COPY requirements.lock.txt .
+#13 CACHED
+
+#14 [backend dependencies 5/5] RUN python -m pip install --no-cache-dir -r requirements.lock.txt     && python -m pip check
+#14 CACHED
+
+#15 [backend dependencies 2/5] WORKDIR /app
+#15 CACHED
+
+#16 [backend dependencies 3/5] RUN apt-get update     && apt-get install -y --no-install-recommends git libgomp1     && rm -rf /var/lib/apt/lists/*
+#16 CACHED
+
+#17 [backend backend 2/3] COPY tests/ tests/
+#17 CACHED
+
+#18 [backend backend 3/3] COPY artifacts/serving/ artifacts/serving/
+#18 DONE 0.1s
+
+#19 [frontend] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:1c69e2ed33063e58df90b61dc5e3900a2fbabad142ade756ef678679a99d5684 done
+#19 exporting config sha256:3d7ee739d00347fd858d24af040bfc44835a4d5cffbafbb1a3c3b2af65446204 done
+#19 exporting attestation manifest sha256:9777e670b83b71cfa84af00b989c9fc883f592c525596086a531d000714053a1 done
+#19 exporting manifest list sha256:d8cc5d3fa0687d7a26013689c61a2dbd1e20bfbb24f4d421309293ac495ff45f done
+#19 naming to docker.io/library/complaint-routing-frontend:local done
+#19 unpacking to docker.io/library/complaint-routing-frontend:local done
+#19 DONE 0.1s
+
+#20 [frontend] resolving provenance for metadata file
+#20 DONE 0.0s
+
+#21 [backend] exporting to image
+#21 exporting layers 0.1s done
+#21 exporting manifest sha256:5e259dc08862bf36c988e8859dcca4ceb6c00742e53fb4fab0f10ec02ec60a2e 0.0s done
+#21 exporting config sha256:f16158da85ac8754ee11dc0c8a2aec8dfee5a4d11f229a538df23a4882f5e5b3 done
+#21 exporting attestation manifest sha256:decc46f47e46bd1122d5a46cd4ec41127443c4aa4622b4319b769d306f9bac17 done
+#21 exporting manifest list sha256:0498843838a6669c8cf87335f299dab5a9b99f68dd018e05f784d1a4d1348c2d done
+#21 naming to docker.io/library/complaint-routing-backend:local done
+#21 unpacking to docker.io/library/complaint-routing-backend:local 0.0s done
+#21 DONE 0.2s
+
+#22 [backend] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image complaint-routing-backend:local Built
+ Image complaint-routing-frontend:local Built
+
+start_services: ['docker', 'compose', '-f', 'compose.yaml', '-f', 'compose.override.yaml', 'up', '-d', '--wait', '--wait-timeout', '180']
+ Network complaint-routing_default Creating
+ Network complaint-routing_default Creating
+ Network complaint-routing_default Created
+ Network complaint-routing_default Created
+ Container complaint-routing-blackbox-1 Creating
+ Container complaint-routing-backend-1 Creating
+ Container complaint-routing-node-exporter-1 Creating
+ Container complaint-routing-blackbox-1 Created
+ Container complaint-routing-node-exporter-1 Created
+ Container complaint-routing-backend-1 Created
+ Container complaint-routing-frontend-1 Creating
+ Container complaint-routing-prometheus-1 Creating
+ Container complaint-routing-frontend-1 Created
+ Container complaint-routing-prometheus-1 Created
+ Container complaint-routing-grafana-1 Creating
+ Container complaint-routing-grafana-1 Created
+ Container complaint-routing-backend-1 Starting
+ Container complaint-routing-blackbox-1 Starting
+ Container complaint-routing-node-exporter-1 Starting
+ Container complaint-routing-backend-1 Started
+ Container complaint-routing-backend-1 Waiting
+ Container complaint-routing-blackbox-1 Started
+ Container complaint-routing-node-exporter-1 Started
+ Container complaint-routing-prometheus-1 Starting
+ Container complaint-routing-prometheus-1 Started
+ Container complaint-routing-grafana-1 Starting
+ Container complaint-routing-grafana-1 Started
+ Container complaint-routing-backend-1 Healthy
+ Container complaint-routing-frontend-1 Starting
+ Container complaint-routing-frontend-1 Started
+ Container complaint-routing-prometheus-1 Waiting
+ Container complaint-routing-grafana-1 Waiting
+ Container complaint-routing-blackbox-1 Waiting
+ Container complaint-routing-node-exporter-1 Waiting
+ Container complaint-routing-backend-1 Waiting
+ Container complaint-routing-frontend-1 Waiting
+ Container complaint-routing-backend-1 Healthy
+ Container complaint-routing-grafana-1 Healthy
+ Container complaint-routing-prometheus-1 Healthy
+ Container complaint-routing-node-exporter-1 Healthy
+ Container complaint-routing-blackbox-1 Healthy
+ Container complaint-routing-frontend-1 Healthy
+
+lifecycle_tests: ['dvc', 'repro', '--single-item', '--force', '--no-run-cache', 'lifecycle_tests']
+Running stage 'lifecycle_tests':
+> python -m pytest tests/test_lifecycle_monitoring.py tests/test_candidate_acceptance.py tests/test_lifecycle_metrics.py -q --junitxml=reports/lifecycle/ci_tests.xml
+..................                                                       [100%]
+- generated xml file: /home/ramscp/customer-complaint-routing-aiops_Project/reports/lifecycle/ci_tests.xml -
+18 passed in 1.05s
+Updating lock file 'dvc.lock'
+
+To track the changes with git, run:
+
+	git add dvc.lock
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+Use `dvc push` to send your updates to remote storage.
+
+runner_tests: ['/home/ramscp/miniforge3/envs/complaint-aiops/bin/python', '-m', 'pytest', 'tests/test_lifecycle_runner.py', '-q', '--junitxml=reports/lifecycle/runner_tests.xml']
+...........                                                              [100%]
+- generated xml file: /home/ramscp/customer-complaint-routing-aiops_Project/reports/lifecycle/runner_tests.xml -
+11 passed in 0.89s
+
+lifecycle_monitor: ['dvc', 'repro', '--single-item', '--force', '--no-run-cache', 'lifecycle_monitor']
+Running stage 'lifecycle_monitor':
+> python -m src.monitor_lifecycle
+2026-11-12 03:17:33,725 INFO Scoring 5000 reference and 19578 November monitoring rows
+2026-11-12 03:17:38,235 INFO Monitoring complete:
+{
+  "status": "PASS",
+  "period": [
+    "2024-11-01",
+    "2024-11-15"
+  ],
+  "monitoring_rows": 19578,
+  "reference_rows": 5000,
+  "drift_batch_sample_rows": 5000,
+  "metrics": {
+    "text_length_jsd": 0.0036488153436205657,
+    "predicted_product_jsd": 0.001209666652986547,
+    "labeled_macro_f1": 0.8327794161621247,
+    "labeled_accuracy": 0.8970272755133313,
+    "automatic_coverage": 0.8126468485034222,
+    "automatic_count": 15910,
+    "unrecognized_fraction": 0.0,
+    "automatic_accuracy": 0.9469516027655562
+  },
+  "batch_distribution": {
+    "text_length_counts": [
+      118,
+      462,
+      896,
+      1256,
+      1388,
+      770,
+      97,
+      13
+    ],
+    "predicted_product_counts": [
+      406,
+      304,
+      3732,
+      421,
+      137
+    ]
+  },
+  "retraining_required": false,
+  "trigger_reasons": [],
+  "monitoring_run_id": "d3cd4b0d3e384dadaee6b003d6697894",
+  "provenance": {
+    "git_commit": "1a1af3f7daf3e2f38eaae5a2f590576f30020497",
+    "config_sha256": "97798af6b678f43b935a7bcf44138bb1d13ccd8573efda5690e7004fb6d8baa7",
+    "reference_source_sha256": "814f0b5d66750196ce249efca0a1a56d5e1d496a75490bba6452aab77bf674d5",
+    "future_source_sha256": "ffa98caff413291dbd81f23633ce3754e31d3bba0db10c73e984d0c3eca6afbb",
+    "serving_manifest_sha256": "2aaafabe9c2571f89371be2bb81a3ee3cf3b3ae54cab01e8424437fd1b215f63",
+    "champion_training_run_id": "376d762990d44d59af5080825e9be19a"
+  },
+  "model_replaced": false,
+  "december_evaluated": false,
+  "limitations": "Distribution proxies do not detect every semantic shift. Performance uses historical labels assumed available after arrival. Thresholds are demonstration settings, not production calibration."
+}
+2026-11-12 03:17:38,235 INFO Saved report: /home/ramscp/customer-complaint-routing-aiops_Project/reports/lifecycle/monitoring.json
+Updating lock file 'dvc.lock'
+
+To track the changes with git, run:
+
+	git add dvc.lock
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+Use `dvc push` to send your updates to remote storage.
+
+conditional_controller: ['/home/ramscp/miniforge3/envs/complaint-aiops/bin/python', '-m', 'src.run_lifecycle']
+{
+  "status": "PASS",
+  "started_at": "2026-11-11T21:47:39.922789+00:00",
+  "scope": "Frozen historical November lifecycle",
+  "steps": [],
+  "december_evaluation_requested": false,
+  "initial_active_model_version": "376d762990d44d59af5080825e9be19a",
+  "config_sha256": "97798af6b678f43b935a7bcf44138bb1d13ccd8573efda5690e7004fb6d8baa7",
+  "git_commit": "1a1af3f7daf3e2f38eaae5a2f590576f30020497",
+  "monitoring_evidence": "reused_verified_saved_report",
+  "monitoring_report_sha256": "0074f68a2a9e9634724dd492bd34d7cca92d46b140d0beea594e751376917872",
+  "outcome": "no_trigger",
+  "deployment_requested": false,
+  "final_active_model_version": "376d762990d44d59af5080825e9be19a",
+  "completed_at": "2026-11-11T21:47:40.099559+00:00"
+}
+Saved: reports/lifecycle/runner.json
+
+lifecycle_candidate_demo: ['dvc', 'repro', '--single-item', '--force', '--no-run-cache', 'lifecycle_candidate_demo']
+Running stage 'lifecycle_candidate_demo':
+> python -m src.retrain_candidate --demonstration
+2026-11-12 03:17:41,371 INFO Candidate training reason: explicit_demonstration
+2026-11-12 03:17:46,789 INFO Fitting candidate on 157912 rows; threshold selection uses 9585 rows
+2026/11/12 03:19:32 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
+2026-11-12 03:19:33,017 INFO Candidate training complete:
+{
+  "status": "PASS",
+  "training_reason": "explicit_demonstration",
+  "automatic_trigger_occurred": false,
+  "monitoring_trigger_reasons": [],
+  "candidate_run_id": "caa8bd53da5f4fb1871725b08a80ec70",
+  "candidate_model_uri": "models:/m-a61d23fb257c4261bff57921f7478ba3",
+  "training_rows": 157912,
+  "new_training_rows": 19578,
+  "threshold_selection_rows": 9585,
+  "thresholds": {
+    "bank_account": 0.73,
+    "credit_card": 0.89,
+    "credit_reporting": 0.6,
+    "debt_collection": 0.94,
+    "mortgage": 0.6
+  },
+  "metrics": {
+    "threshold_selection_macro_f1": 0.8319879787940379,
+    "threshold_selection_accuracy": 0.9055816379760042,
+    "threshold_selection_automatic_count": 8011,
+    "threshold_selection_automatic_coverage": 0.8357850808555034,
+    "threshold_selection_automatic_accuracy": 0.9509424541255773
+  },
+  "model_reload_check": "PASS",
+  "candidate_model_sha256": "9052dc95de32ad4841016f6d792b0a92db0ed173661e36771a348d60effda56d",
+  "candidate_policy_sha256": "773d73f9c9adf90053e1a640685d23ad1f3f7de3056783f2126a0a113695b0c4",
+  "provenance": {
+    "git_commit": "1a1af3f7daf3e2f38eaae5a2f590576f30020497",
+    "config_sha256": "97798af6b678f43b935a7bcf44138bb1d13ccd8573efda5690e7004fb6d8baa7",
+    "monitoring_report_sha256": "0074f68a2a9e9634724dd492bd34d7cca92d46b140d0beea594e751376917872",
+    "original_train_sha256": "814f0b5d66750196ce249efca0a1a56d5e1d496a75490bba6452aab77bf674d5",
+    "future_source_sha256": "ffa98caff413291dbd81f23633ce3754e31d3bba0db10c73e984d0c3eca6afbb",
+    "parent_champion_run_id": "376d762990d44d59af5080825e9be19a",
+    "parent_serving_manifest_sha256": "2aaafabe9c2571f89371be2bb81a3ee3cf3b3ae54cab01e8424437fd1b215f63",
+    "training_reason": "explicit_demonstration"
+  },
+  "acceptance_period_evaluated": false,
+  "december_evaluated": false,
+  "serving_model_replaced": false
+}
+2026-11-12 03:19:33,017 INFO Champion retained. Candidate acceptance is the next step.
+Updating lock file 'dvc.lock'
+
+To track the changes with git, run:
+
+	git add dvc.lock
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+Use `dvc push` to send your updates to remote storage.
+
+lifecycle_accept: ['dvc', 'repro', '--single-item', '--force', '--no-run-cache', 'lifecycle_accept']
+Running stage 'lifecycle_accept':
+> python -m src.accept_candidate
+2026-11-12 03:19:38,795 INFO Comparing both models on 8913 acceptance complaints
+2026-11-12 03:19:41,536 INFO Acceptance complete:
+{
+  "status": "PASS",
+  "period": [
+    "2024-11-23",
+    "2024-11-30"
+  ],
+  "acceptance_rows": 8913,
+  "champion": {
+    "macro_f1": 0.8305769460126141,
+    "accuracy": 0.9031751374396948,
+    "automatic_count": 7346,
+    "automatic_coverage": 0.8241893862896892,
+    "automatic_accuracy": 0.9505853525728287,
+    "recall": {
+      "bank_account": 0.9008849557522124,
+      "credit_card": 0.7596774193548387,
+      "credit_reporting": 0.9608524788391778,
+      "debt_collection": 0.5830546265328874,
+      "mortgage": 0.8837209302325582
+    }
+  },
+  "candidate": {
+    "macro_f1": 0.8370198222217098,
+    "accuracy": 0.9064288118478627,
+    "automatic_count": 7504,
+    "automatic_coverage": 0.8419163020307416,
+    "automatic_accuracy": 0.9486940298507462,
+    "recall": {
+      "bank_account": 0.8955752212389381,
+      "credit_card": 0.7596774193548387,
+      "credit_reporting": 0.9603990326481258,
+      "debt_collection": 0.6243032329988851,
+      "mortgage": 0.8744186046511628
+    }
+  },
+  "checks": {
+    "macro_f1_improves": true,
+    "per_class_recall_preserved": true,
+    "sufficient_automatic_predictions": true,
+    "automatic_accuracy_floor": true,
+    "automatic_accuracy_preserved": true,
+    "automatic_coverage_preserved": true
+  },
+  "decision": "candidate_accepted",
+  "selected_run_id": "caa8bd53da5f4fb1871725b08a80ec70",
+  "champion_run_id": "376d762990d44d59af5080825e9be19a",
+  "candidate_run_id": "caa8bd53da5f4fb1871725b08a80ec70",
+  "acceptance_run_id": "225a58c1f3e341c4bce8816d3f4ff9c0",
+  "config_sha256": "97798af6b678f43b935a7bcf44138bb1d13ccd8573efda5690e7004fb6d8baa7",
+  "candidate_training_summary_sha256": "bf233b3f19f36d84698263029bf016d6cf0db7a8f653d5852d92e082f67897b4",
+  "future_source_sha256": "ffa98caff413291dbd81f23633ce3754e31d3bba0db10c73e984d0c3eca6afbb",
+  "git_commit": "1a1af3f7daf3e2f38eaae5a2f590576f30020497",
+  "serving_model_replaced": false,
+  "december_evaluated": false,
+  "note": "Selection decision only; serving deployment is a separate step."
+}
+Updating lock file 'dvc.lock'
+
+To track the changes with git, run:
+
+	git add dvc.lock
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+Use `dvc push` to send your updates to remote storage.
+
+lifecycle_package: ['dvc', 'repro', '--single-item', '--force', '--no-run-cache', 'lifecycle_package']
+Running stage 'lifecycle_package':
+> python -m src.package_candidate
+2026/11/12 03:19:43 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
+2026-11-12 03:19:43,863 INFO Candidate packaging complete:
+{
+  "status": "PASS",
+  "candidate_run_id": "caa8bd53da5f4fb1871725b08a80ec70",
+  "bundle": "artifacts/lifecycle/candidate/serving",
+  "bundle_manifest_sha256": "b74d6e687fe4654dc840f4bee69471824de3d8201928f4d2579c59a570798631",
+  "acceptance_decision_sha256": "1b84cf593b00365369e83010cd2f57ba836d31f2e8212573efbb21a76a3f6a45",
+  "candidate_model_sha256": "9052dc95de32ad4841016f6d792b0a92db0ed173661e36771a348d60effda56d",
+  "candidate_policy_sha256": "773d73f9c9adf90053e1a640685d23ad1f3f7de3056783f2126a0a113695b0c4",
+  "config_sha256": "97798af6b678f43b935a7bcf44138bb1d13ccd8573efda5690e7004fb6d8baa7",
+  "original_serving_manifest_sha256": "2aaafabe9c2571f89371be2bb81a3ee3cf3b3ae54cab01e8424437fd1b215f63",
+  "portable_loader_check": "PASS",
+  "prediction_equivalence": "PASS",
+  "probability_equivalence": "PASS",
+  "smoke_examples": 6,
+  "serving_model_replaced": false,
+  "git_commit": "1a1af3f7daf3e2f38eaae5a2f590576f30020497"
+}
+Updating lock file 'dvc.lock'
+
+To track the changes with git, run:
+
+	git add dvc.lock
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+Use `dvc push` to send your updates to remote storage.
+
+deployment_rollback: ['/home/ramscp/miniforge3/envs/complaint-aiops/bin/python', 'scripts/verify_lifecycle_deployment.py']
+candidate_deployment: switching backend...
+candidate_deployment: PASS; model_version=caa8bd53da5f4fb1871725b08a80ec70
+original_model_rollback: switching backend...
+original_model_rollback: PASS; model_version=376d762990d44d59af5080825e9be19a
+candidate_redeployment: switching backend...
+candidate_redeployment: PASS; model_version=caa8bd53da5f4fb1871725b08a80ec70
+
+PASS: candidate deployment, original rollback and candidate redeployment.
+Active model: caa8bd53da5f4fb1871725b08a80ec70
+Saved evidence: reports/lifecycle/deployment_verification.json
+Default Docker Compose startup now selects the candidate through .env.
+
+record_lifecycle_deployment_record: ['dvc', 'commit', '--force', 'lifecycle_deployment_record']
+Updating lock file 'dvc.lock'
+
+december_evaluation: ['/home/ramscp/miniforge3/envs/complaint-aiops/bin/python', '-m', 'src.evaluate_lifecycle_final']
+2026-11-12 03:20:09,037 INFO Evaluating frozen selected model on 41282 December complaints
+2026-11-12 03:20:14,720 INFO Final evaluation complete:
+{
+  "status": "PASS",
+  "period": [
+    "2024-12-01",
+    "2024-12-31"
+  ],
+  "final_rows": 41282,
+  "selected_training_run_id": "caa8bd53da5f4fb1871725b08a80ec70",
+  "evaluation_run_id": "8cef03df53f54c78b2a23bddcc0ad109",
+  "thresholds": {
+    "bank_account": 0.73,
+    "credit_card": 0.89,
+    "credit_reporting": 0.6,
+    "debt_collection": 0.94,
+    "mortgage": 0.6
+  },
+  "metrics": {
+    "macro_f1": 0.8313863529461398,
+    "accuracy": 0.8959837217189089,
+    "automatic_count": 34288,
+    "automatic_coverage": 0.8305799137638681,
+    "automatic_accuracy": 0.9425454969668688,
+    "recall": {
+      "bank_account": 0.8925470332850941,
+      "credit_card": 0.7225244831338411,
+      "credit_reporting": 0.9556262558606832,
+      "debt_collection": 0.6318602261048304,
+      "mortgage": 0.888030888030888
+    }
+  },
+  "provenance": {
+    "git_commit": "1a1af3f7daf3e2f38eaae5a2f590576f30020497",
+    "config_sha256": "97798af6b678f43b935a7bcf44138bb1d13ccd8573efda5690e7004fb6d8baa7",
+    "acceptance_decision_sha256": "1b84cf593b00365369e83010cd2f57ba836d31f2e8212573efbb21a76a3f6a45",
+    "deployment_report_sha256": "df9c2e359a993b229b9ffed6861e98e5594b714be4036c2fae8e6490afe64ce7",
+    "bundle_manifest_sha256": "b74d6e687fe4654dc840f4bee69471824de3d8201928f4d2579c59a570798631",
+    "future_source_sha256": "ffa98caff413291dbd81f23633ce3754e31d3bba0db10c73e984d0c3eca6afbb",
+    "selected_training_run_id": "caa8bd53da5f4fb1871725b08a80ec70"
+  },
+  "model_changed_using_final_data": false,
+  "thresholds_changed_using_final_data": false,
+  "note": "PASS means evaluation completed and integrity checks passed; it does not mean a performance target was guaranteed."
+}
+
+record_lifecycle_final_record: ['dvc', 'commit', '--force', 'lifecycle_final_record']
+Updating lock file 'dvc.lock'
+
+final_checks: ['dvc', 'repro', '--single-item', '--force', '--no-run-cache', 'final_checks']
+Running stage 'final_checks':
+> python scripts/run_final_checks.py
+Testing selected model: caa8bd53da5f4fb1871725b08a80ec70
+........................................................................ [ 93%]
+.....                                                                    [100%]
+=============================== warnings summary ===============================
+../miniforge3/envs/complaint-aiops/lib/python3.11/site-packages/starlette/testclient.py:51
+  /home/ramscp/miniforge3/envs/complaint-aiops/lib/python3.11/site-packages/starlette/testclient.py:51: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: /home/ramscp/customer-complaint-routing-aiops_Project/reports/final/full_tests.xml -
+77 passed, 1 warning in 1.63s
+
+{
+  "status": "PASS",
+  "selected_training_run_id": "caa8bd53da5f4fb1871725b08a80ec70",
+  "serving_bundle": "artifacts/lifecycle/candidate/serving",
+  "counts": {
+    "total": 77,
+    "passed": 77,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "pytest_exit_code": 0,
+  "git_commit": "1a1af3f7daf3e2f38eaae5a2f590576f30020497",
+  "completed_at": "2026-11-11T21:50:18.356647+00:00",
+  "scope": "Complete automated test suite with candidate HTTP tests and original-bundle integrity tests. No retraining or December reevaluation; this is not a load test."
+}
+Updating lock file 'dvc.lock'
+
+To track the changes with git, run:
+
+	git add dvc.lock
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+Use `dvc push` to send your updates to remote storage.
+
+http_smoke: ['/home/ramscp/miniforge3/envs/complaint-aiops/bin/python', 'scripts/smoke_containers.py']
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "backend_health",
+      "passed": true
+    },
+    {
+      "check": "single_prediction",
+      "passed": true
+    },
+    {
+      "check": "confidence_range",
+      "passed": true
+    },
+    {
+      "check": "batch_prediction",
+      "passed": true
+    },
+    {
+      "check": "batch_count",
+      "passed": true
+    },
+    {
+      "check": "invalid_input_rejected",
+      "passed": true
+    },
+    {
+      "check": "unrecognized_text_requires_review",
+      "passed": true
+    },
+    {
+      "check": "pipeline_endpoint",
+      "passed": true
+    },
+    {
+      "check": "pipeline_has_training",
+      "passed": true
+    },
+    {
+      "check": "frontend_health",
+      "passed": true
+    }
+  ]
+}
+
+dvc_status: ['dvc', 'status', '--json']
+WARNING: stage: 'lifecycle_deployment_record' is frozen. Its dependencies are not going to be shown in the status output.
+WARNING: stage: 'lifecycle_final_record' is frozen. Its dependencies are not going to be shown in the status output.
+{}
+
+dvc_diagram: ['dvc', 'dag', '--mermaid']
+flowchart TD
+	node1["data/raw.dvc"]
+	node2["evaluate"]
+	node3["export_model"]
+	node4["final_checks"]
+	node5["ingest"]
+	node6["lifecycle_accept"]
+	node7["lifecycle_candidate_demo"]
+	node8["lifecycle_deployment_record"]
+	node9["lifecycle_final_record"]
+	node10["lifecycle_monitor"]
+	node11["lifecycle_package"]
+	node12["lifecycle_tests"]
+	node13["select_threshold"]
+	node14["train"]
+	node15["validate_data"]
+	node16["validate_threshold"]
+	node1-->node5
+	node2-->node4
+	node3-->node4
+	node3-->node6
+	node3-->node7
+	node3-->node8
+	node3-->node10
+	node3-->node11
+	node5-->node2
+	node5-->node4
+	node5-->node6
+	node5-->node7
+	node5-->node9
+	node5-->node10
+	node5-->node14
+	node5-->node15
+	node6-->node8
+	node6-->node9
+	node6-->node11
+	node7-->node6
+	node7-->node9
+	node7-->node11
+	node8-->node9
+	node9-->node4
+	node10-->node7
+	node11-->node4
+	node11-->node8
+	node11-->node9
+	node12-->node10
+	node13-->node2
+	node13-->node3
+	node13-->node16
+	node14-->node2
+	node14-->node3
+	node14-->node4
+	node14-->node13
+	node15-->node14
+	node16-->node2

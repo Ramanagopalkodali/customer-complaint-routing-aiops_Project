@@ -38,14 +38,14 @@
   },
   "retraining_required": false,
   "trigger_reasons": [],
-  "monitoring_run_id": "005fd7e2c2c1441fa4b725b5ee814d02",
+  "monitoring_run_id": "d3cd4b0d3e384dadaee6b003d6697894",
   "provenance": {
-    "git_commit": "3feb35f0c24a956141b610ad4c633fb5b4af3ed6",
-    "config_sha256": "e28592cace49b2fe6015a918b09fd668080e1a50e7ed603a9abfcb44675dc2b4",
+    "git_commit": "1a1af3f7daf3e2f38eaae5a2f590576f30020497",
+    "config_sha256": "97798af6b678f43b935a7bcf44138bb1d13ccd8573efda5690e7004fb6d8baa7",
     "reference_source_sha256": "814f0b5d66750196ce249efca0a1a56d5e1d496a75490bba6452aab77bf674d5",
     "future_source_sha256": "ffa98caff413291dbd81f23633ce3754e31d3bba0db10c73e984d0c3eca6afbb",
-    "serving_manifest_sha256": "04e8b7a8ce7aa512107e0a2a0a4592ae2c0088307f0a259ff3bf84c51bde5c34",
-    "champion_training_run_id": "978e2c9d02e0494195e9989a3222fd9d"
+    "serving_manifest_sha256": "2aaafabe9c2571f89371be2bb81a3ee3cf3b3ae54cab01e8424437fd1b215f63",
+    "champion_training_run_id": "376d762990d44d59af5080825e9be19a"
   },
   "model_replaced": false,
   "december_evaluated": false,

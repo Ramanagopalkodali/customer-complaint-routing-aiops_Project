@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "active_model_version": "f8d2fa4071174ad3b799a9719ba4697c",
+  "active_model_version": "caa8bd53da5f4fb1871725b08a80ec70",
   "december_evaluation_matches_active_model": true,
   "lifecycle_reports_present": {
     "monitoring": true,
@@ -8,5 +8,39 @@
     "deployment": true,
     "final": true,
     "runner": true
-  }
+  },
+  "frontend_health": "PASS",
+  "grafana_health": "PASS",
+  "prometheus_targets": [
+    {
+      "job": "backend",
+      "health": "up"
+    },
+    {
+      "job": "blackbox",
+      "health": "up"
+    },
+    {
+      "job": "node",
+      "health": "up"
+    },
+    {
+      "job": "prometheus",
+      "health": "up"
+    },
+    {
+      "job": "service_probes",
+      "health": "up"
+    },
+    {
+      "job": "service_probes",
+      "health": "up"
+    }
+  ],
+  "fresh_final_score_in_prometheus": 0.8313863529461398,
+  "application_probes": {
+    "frontend": 1,
+    "backend": 1
+  },
+  "traffic": "Synthetic smoke requests; not a load test"
 }

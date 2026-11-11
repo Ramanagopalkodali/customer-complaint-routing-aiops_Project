@@ -5,8 +5,8 @@
     "2024-12-31"
   ],
   "final_rows": 41282,
-  "selected_training_run_id": "f8d2fa4071174ad3b799a9719ba4697c",
-  "evaluation_run_id": "29c70592ae474df0a4348d800861d65d",
+  "selected_training_run_id": "caa8bd53da5f4fb1871725b08a80ec70",
+  "evaluation_run_id": "8cef03df53f54c78b2a23bddcc0ad109",
   "thresholds": {
     "bank_account": 0.73,
     "credit_card": 0.89,
@@ -29,13 +29,13 @@
     }
   },
   "provenance": {
-    "git_commit": "255c4f6f54ef3cf0ed97822baf3236ce799b39e2",
-    "config_sha256": "e28592cace49b2fe6015a918b09fd668080e1a50e7ed603a9abfcb44675dc2b4",
-    "acceptance_decision_sha256": "cfbf8c1de4295a583eaaceae74cc71d0ee2e4d470d49d9c03547935814dfd15b",
-    "deployment_report_sha256": "fc3002eba9be595384d974b73e0804d7b86c541f574ee78f3d64ab203493593c",
-    "bundle_manifest_sha256": "1c0991313f073c719ed0fc844f2de251193cbca01a132f5f51a8a23ef5743452",
+    "git_commit": "1a1af3f7daf3e2f38eaae5a2f590576f30020497",
+    "config_sha256": "97798af6b678f43b935a7bcf44138bb1d13ccd8573efda5690e7004fb6d8baa7",
+    "acceptance_decision_sha256": "1b84cf593b00365369e83010cd2f57ba836d31f2e8212573efbb21a76a3f6a45",
+    "deployment_report_sha256": "df9c2e359a993b229b9ffed6861e98e5594b714be4036c2fae8e6490afe64ce7",
+    "bundle_manifest_sha256": "b74d6e687fe4654dc840f4bee69471824de3d8201928f4d2579c59a570798631",
     "future_source_sha256": "ffa98caff413291dbd81f23633ce3754e31d3bba0db10c73e984d0c3eca6afbb",
-    "selected_training_run_id": "f8d2fa4071174ad3b799a9719ba4697c"
+    "selected_training_run_id": "caa8bd53da5f4fb1871725b08a80ec70"
   },
   "model_changed_using_final_data": false,
   "thresholds_changed_using_final_data": false,

@@ -1,0 +1,359 @@
+{
+  "status": "PASS",
+  "started_at": "2026-11-11T21:47:07.531240+00:00",
+  "steps": [
+    {
+      "name": "source_commit",
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 0.001
+    },
+    {
+      "name": "baseline_freshness",
+      "command": [
+        "dvc",
+        "status",
+        "--json",
+        "ingest",
+        "validate_data",
+        "train",
+        "select_threshold",
+        "validate_threshold",
+        "evaluate",
+        "export_model"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 0.63
+    },
+    {
+      "name": "compose_configuration",
+      "command": [
+        "docker",
+        "compose",
+        "-f",
+        "compose.yaml",
+        "-f",
+        "compose.override.yaml",
+        "config",
+        "--quiet"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 0.063
+    },
+    {
+      "name": "stop_services",
+      "command": [
+        "docker",
+        "compose",
+        "-f",
+        "compose.yaml",
+        "-f",
+        "compose.override.yaml",
+        "down"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 0.054
+    },
+    {
+      "name": "build_applications",
+      "command": [
+        "docker",
+        "compose",
+        "-f",
+        "compose.yaml",
+        "-f",
+        "compose.override.yaml",
+        "build",
+        "backend",
+        "frontend"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 5.127
+    },
+    {
+      "name": "start_services",
+      "command": [
+        "docker",
+        "compose",
+        "-f",
+        "compose.yaml",
+        "-f",
+        "compose.override.yaml",
+        "up",
+        "-d",
+        "--wait",
+        "--wait-timeout",
+        "180"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 12.025
+    },
+    {
+      "name": "lifecycle_tests",
+      "command": [
+        "dvc",
+        "repro",
+        "--single-item",
+        "--force",
+        "--no-run-cache",
+        "lifecycle_tests"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 2.551
+    },
+    {
+      "name": "runner_tests",
+      "command": [
+        "/home/ramscp/miniforge3/envs/complaint-aiops/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_lifecycle_runner.py",
+        "-q",
+        "--junitxml=reports/lifecycle/runner_tests.xml"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 1.516
+    },
+    {
+      "name": "lifecycle_monitor",
+      "command": [
+        "dvc",
+        "repro",
+        "--single-item",
+        "--force",
+        "--no-run-cache",
+        "lifecycle_monitor"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 9.252
+    },
+    {
+      "name": "conditional_controller",
+      "command": [
+        "/home/ramscp/miniforge3/envs/complaint-aiops/bin/python",
+        "-m",
+        "src.run_lifecycle"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 1.291
+    },
+    {
+      "name": "lifecycle_candidate_demo",
+      "command": [
+        "dvc",
+        "repro",
+        "--single-item",
+        "--force",
+        "--no-run-cache",
+        "lifecycle_candidate_demo"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 113.597
+    },
+    {
+      "name": "lifecycle_accept",
+      "command": [
+        "dvc",
+        "repro",
+        "--single-item",
+        "--force",
+        "--no-run-cache",
+        "lifecycle_accept"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 8.125
+    },
+    {
+      "name": "lifecycle_package",
+      "command": [
+        "dvc",
+        "repro",
+        "--single-item",
+        "--force",
+        "--no-run-cache",
+        "lifecycle_package"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 2.259
+    },
+    {
+      "name": "deployment_rollback",
+      "command": [
+        "/home/ramscp/miniforge3/envs/complaint-aiops/bin/python",
+        "scripts/verify_lifecycle_deployment.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 20.387
+    },
+    {
+      "name": "record_lifecycle_deployment_record",
+      "command": [
+        "dvc",
+        "commit",
+        "--force",
+        "lifecycle_deployment_record"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 0.367
+    },
+    {
+      "name": "december_evaluation",
+      "command": [
+        "/home/ramscp/miniforge3/envs/complaint-aiops/bin/python",
+        "-m",
+        "src.evaluate_lifecycle_final"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 10.152
+    },
+    {
+      "name": "record_lifecycle_final_record",
+      "command": [
+        "dvc",
+        "commit",
+        "--force",
+        "lifecycle_final_record"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 0.391
+    },
+    {
+      "name": "final_checks",
+      "command": [
+        "dvc",
+        "repro",
+        "--single-item",
+        "--force",
+        "--no-run-cache",
+        "final_checks"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 3.043
+    },
+    {
+      "name": "http_smoke",
+      "command": [
+        "/home/ramscp/miniforge3/envs/complaint-aiops/bin/python",
+        "scripts/smoke_containers.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 1.22
+    },
+    {
+      "name": "dvc_status",
+      "command": [
+        "dvc",
+        "status",
+        "--json"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 0.299
+    },
+    {
+      "name": "dvc_diagram",
+      "command": [
+        "dvc",
+        "dag",
+        "--mermaid"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 0.353
+    }
+  ],
+  "scope": "Historical lifecycle replay, live deployment and final tests",
+  "artifact_recovery_and_tracking_backup_refreshed": false,
+  "git_commit": "1a1af3f7daf3e2f38eaae5a2f590576f30020497",
+  "champion_run_id": "376d762990d44d59af5080825e9be19a",
+  "config_sha256": "97798af6b678f43b935a7bcf44138bb1d13ccd8573efda5690e7004fb6d8baa7",
+  "replaced_generated_paths": [
+    "reports/lifecycle",
+    "artifacts/lifecycle",
+    "reports/final/full_tests.xml",
+    "reports/final/tests_summary.json",
+    "reports/final/pipeline_live_check.json"
+  ],
+  "automatic_trigger_occurred": false,
+  "acceptance_decision": "candidate_accepted",
+  "training_reason": "explicit_demonstration",
+  "live_checks": {
+    "status": "PASS",
+    "active_model_version": "caa8bd53da5f4fb1871725b08a80ec70",
+    "december_evaluation_matches_active_model": true,
+    "lifecycle_reports_present": {
+      "monitoring": true,
+      "acceptance": true,
+      "deployment": true,
+      "final": true,
+      "runner": true
+    },
+    "frontend_health": "PASS",
+    "grafana_health": "PASS",
+    "prometheus_targets": [
+      {
+        "job": "backend",
+        "health": "up"
+      },
+      {
+        "job": "blackbox",
+        "health": "up"
+      },
+      {
+        "job": "node",
+        "health": "up"
+      },
+      {
+        "job": "prometheus",
+        "health": "up"
+      },
+      {
+        "job": "service_probes",
+        "health": "up"
+      },
+      {
+        "job": "service_probes",
+        "health": "up"
+      }
+    ],
+    "fresh_final_score_in_prometheus": 0.8313863529461398,
+    "application_probes": {
+      "frontend": 1,
+      "backend": 1
+    },
+    "traffic": "Synthetic smoke requests; not a load test"
+  },
+  "active_model_version": "caa8bd53da5f4fb1871725b08a80ec70",
+  "december_evaluated": true,
+  "tests": {
+    "total": 77,
+    "passed": 77,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "completed_at": "2026-11-11T21:50:41.295076+00:00"
+}

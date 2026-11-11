@@ -1,16 +1,16 @@
 {
   "status": "PASS",
-  "started_at": "2026-11-10T21:29:33.777082+00:00",
+  "started_at": "2026-11-11T21:47:39.922789+00:00",
   "scope": "Frozen historical November lifecycle",
   "steps": [],
   "december_evaluation_requested": false,
-  "initial_active_model_version": "f8d2fa4071174ad3b799a9719ba4697c",
-  "config_sha256": "e28592cace49b2fe6015a918b09fd668080e1a50e7ed603a9abfcb44675dc2b4",
-  "git_commit": "93392659d76e494a18ae730bea0c1a2e8054a301",
+  "initial_active_model_version": "376d762990d44d59af5080825e9be19a",
+  "config_sha256": "97798af6b678f43b935a7bcf44138bb1d13ccd8573efda5690e7004fb6d8baa7",
+  "git_commit": "1a1af3f7daf3e2f38eaae5a2f590576f30020497",
   "monitoring_evidence": "reused_verified_saved_report",
-  "monitoring_report_sha256": "38bca3cebfec88169130ffc997db3cab07f5616387e5ff410f05266c2e3e840c",
+  "monitoring_report_sha256": "0074f68a2a9e9634724dd492bd34d7cca92d46b140d0beea594e751376917872",
   "outcome": "no_trigger",
   "deployment_requested": false,
-  "final_active_model_version": "f8d2fa4071174ad3b799a9719ba4697c",
-  "completed_at": "2026-11-10T21:29:34.090494+00:00"
+  "final_active_model_version": "376d762990d44d59af5080825e9be19a",
+  "completed_at": "2026-11-11T21:47:40.099559+00:00"
 }

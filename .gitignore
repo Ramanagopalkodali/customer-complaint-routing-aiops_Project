@@ -16,3 +16,25 @@ mlflow.db
 logs/
 mlflow.db-*
 reports/app_results/
+
+# Submission and runtime files
+/.env
+/.env.*
+!/.env.example
+/.vscode/
+/mlflow.db*
+/mlruns/
+/mlartifacts/
+/.dvc/cache/
+/.dvc/tmp/
+/.dvc/config.local
+/reports/app_results/
+.DS_Store
+Thumbs.db
+
+!/logs/
+/logs/*
+!/logs/reproduction/
+/logs/reproduction/*
+!/logs/reproduction/baseline.log
+!/logs/reproduction/lifecycle.log

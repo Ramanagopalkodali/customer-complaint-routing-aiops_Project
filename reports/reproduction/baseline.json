@@ -1,0 +1,173 @@
+{
+  "status": "PASS",
+  "started_at": "2026-11-11T21:08:46.873798+00:00",
+  "scope": "Baseline ingestion, training, October evaluation and export",
+  "steps": [
+    {
+      "name": "dependencies",
+      "command": [
+        "/home/ramscp/miniforge3/envs/complaint-aiops/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "started_at": "2026-11-11T21:08:47.007864+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "completed_at": "2026-11-11T21:08:47.433006+00:00",
+      "duration_seconds": 0.425
+    },
+    {
+      "name": "compose_configuration",
+      "command": [
+        "docker",
+        "compose",
+        "config",
+        "--quiet"
+      ],
+      "started_at": "2026-11-11T21:08:47.434337+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "completed_at": "2026-11-11T21:08:47.634349+00:00",
+      "duration_seconds": 0.199
+    },
+    {
+      "name": "stop_services",
+      "command": [
+        "docker",
+        "compose",
+        "down"
+      ],
+      "started_at": "2026-11-11T21:08:47.634960+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "completed_at": "2026-11-11T21:08:47.789451+00:00",
+      "duration_seconds": 0.154
+    },
+    {
+      "name": "ingest",
+      "command": [
+        "dvc",
+        "repro",
+        "--single-item",
+        "--force",
+        "--no-run-cache",
+        "ingest"
+      ],
+      "started_at": "2026-11-11T21:08:47.789680+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "completed_at": "2026-11-11T21:09:13.145174+00:00",
+      "duration_seconds": 25.355
+    },
+    {
+      "name": "validate_data",
+      "command": [
+        "dvc",
+        "repro",
+        "--single-item",
+        "--force",
+        "--no-run-cache",
+        "validate_data"
+      ],
+      "started_at": "2026-11-11T21:09:13.145534+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "completed_at": "2026-11-11T21:09:14.055223+00:00",
+      "duration_seconds": 0.908
+    },
+    {
+      "name": "train",
+      "command": [
+        "dvc",
+        "repro",
+        "--single-item",
+        "--force",
+        "--no-run-cache",
+        "train"
+      ],
+      "started_at": "2026-11-11T21:09:14.055903+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "completed_at": "2026-11-11T21:13:27.855268+00:00",
+      "duration_seconds": 253.799
+    },
+    {
+      "name": "select_threshold",
+      "command": [
+        "dvc",
+        "repro",
+        "--single-item",
+        "--force",
+        "--no-run-cache",
+        "select_threshold"
+      ],
+      "started_at": "2026-11-11T21:13:27.856422+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "completed_at": "2026-11-11T21:13:29.036303+00:00",
+      "duration_seconds": 1.18
+    },
+    {
+      "name": "validate_threshold",
+      "command": [
+        "dvc",
+        "repro",
+        "--single-item",
+        "--force",
+        "--no-run-cache",
+        "validate_threshold"
+      ],
+      "started_at": "2026-11-11T21:13:29.036935+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "completed_at": "2026-11-11T21:13:30.242063+00:00",
+      "duration_seconds": 1.203
+    },
+    {
+      "name": "evaluate",
+      "command": [
+        "dvc",
+        "repro",
+        "--single-item",
+        "--force",
+        "--no-run-cache",
+        "evaluate"
+      ],
+      "started_at": "2026-11-11T21:13:30.242650+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "completed_at": "2026-11-11T21:13:38.602752+00:00",
+      "duration_seconds": 8.357
+    },
+    {
+      "name": "export_model",
+      "command": [
+        "dvc",
+        "repro",
+        "--single-item",
+        "--force",
+        "--no-run-cache",
+        "export_model"
+      ],
+      "started_at": "2026-11-11T21:13:38.603156+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "completed_at": "2026-11-11T21:13:41.905034+00:00",
+      "duration_seconds": 3.302
+    }
+  ],
+  "lifecycle_replayed": false,
+  "git_commit": "40ec18821248d1f88140f751a09f8e97d13e0f91",
+  "raw_archives_sha256": {
+    "cfpb_2024_04_07.zip": "c8a6fb0d98287958e2c19b47e1a4211c4e43225d27123a3ca08d730a2b4ae0a5",
+    "cfpb_2024_08_10.zip": "f053000c342bfd08bc6f8f382290f623e34b166cb56760c0726ed15e296a6d74",
+    "cfpb_2024_11_12.zip": "24b3326a954c0edeff33318b157d12eef5a59547f6f274f9236f1ceaba988a74"
+  },
+  "original_model_version": "376d762990d44d59af5080825e9be19a",
+  "selected_model": "linear_svc_calibrated",
+  "serving_manifest_sha256": "2aaafabe9c2571f89371be2bb81a3ee3cf3b3ae54cab01e8424437fd1b215f63",
+  "lifecycle_binding_required": true,
+  "next_step": "Bind and commit the new champion identity before lifecycle replay.",
+  "completed_at": "2026-11-11T21:13:42.166781+00:00"
+}

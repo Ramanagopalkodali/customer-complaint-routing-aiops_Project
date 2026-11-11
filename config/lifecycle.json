@@ -1,22 +1,43 @@
 {
   "schema_version": 1,
   "seed": 42,
-  "champion_training_run_id": "978e2c9d02e0494195e9989a3222fd9d",
+  "champion_training_run_id": "376d762990d44d59af5080825e9be19a",
   "periods": {
-    "monitor_and_candidate_train": ["2024-11-01", "2024-11-15"],
-    "candidate_threshold_selection": ["2024-11-16", "2024-11-22"],
-    "candidate_acceptance": ["2024-11-23", "2024-11-30"],
-    "final_evaluation": ["2024-12-01", "2024-12-31"]
+    "monitor_and_candidate_train": [
+      "2024-11-01",
+      "2024-11-15"
+    ],
+    "candidate_threshold_selection": [
+      "2024-11-16",
+      "2024-11-22"
+    ],
+    "candidate_acceptance": [
+      "2024-11-23",
+      "2024-11-30"
+    ],
+    "final_evaluation": [
+      "2024-12-01",
+      "2024-12-31"
+    ]
   },
   "monitoring": {
     "reference_source": "data/processed/train.csv",
     "reference_sample_limit": 5000,
     "batch_sample_limit": 5000,
     "minimum_batch_rows": 500,
-    "text_length_bins": [0, 100, 250, 500, 1000, 2000, 5000, 10000],
+    "text_length_bins": [
+      0,
+      100,
+      250,
+      500,
+      1000,
+      2000,
+      5000,
+      10000
+    ],
     "js_divergence_base": 2,
-    "js_divergence_threshold": 0.10,
-    "labeled_macro_f1_floor": 0.80,
+    "js_divergence_threshold": 0.1,
+    "labeled_macro_f1_floor": 0.8,
     "trigger_rule": "text_length_jsd > threshold OR predicted_product_jsd > threshold OR labeled_macro_f1 < floor"
   },
   "candidate": {

@@ -1,6 +1,6 @@
 {
-  "evaluation_run_id": "495ec69309314dd580dce1884664bc84",
-  "git_commit": "c62b6332549f653e319907fb15261b38a875bc39",
+  "evaluation_run_id": "01ef34b1c23448c1a659d0679b12500b",
+  "git_commit": "40ec18821248d1f88140f751a09f8e97d13e0f91",
   "metrics": {
     "test_accuracy": 0.8952223882904705,
     "test_automatic_accuracy": 0.9466111200128184,
@@ -11,7 +11,7 @@
   },
   "model_name": "linear_svc_calibrated",
   "model_probability_checks": "PASS",
-  "policy_sha256": "aafe6eb39ebf728238381bbae40cde41facb50fb0c9ce4060e45fee2fb117784",
+  "policy_sha256": "56a5f87cd119f4483175d8e37ba2397bef406fc42878dafaa505648c11be5bc3",
   "test_rows": 38806,
   "test_sha256": "a5c1a686c587f55cea7acc3d9d57a9f35a69e1e0771b71481df1f32919bbb2b0",
   "thresholds": {
@@ -22,5 +22,5 @@
     "mortgage": 0.69
   },
   "thresholds_changed_using_test": false,
-  "training_run_id": "978e2c9d02e0494195e9989a3222fd9d"
+  "training_run_id": "376d762990d44d59af5080825e9be19a"
 }

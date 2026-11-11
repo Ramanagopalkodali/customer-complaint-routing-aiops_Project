@@ -1,28 +1,28 @@
 {
   "provenance": {
-    "git_commit": "00a8bd5ad094197c3b2b427eea2540ee9b3f3155",
+    "git_commit": "40ec18821248d1f88140f751a09f8e97d13e0f91",
     "train_sha256": "814f0b5d66750196ce249efca0a1a56d5e1d496a75490bba6452aab77bf674d5",
     "validation_sha256": "1b146aa13fe291733f693849fa9d3674b4b94c69c18e72e6344741f876747ec6"
   },
   "results": {
     "linear_svc_calibrated": {
-      "fit_and_validation_seconds": 166.20780814599993,
+      "fit_and_validation_seconds": 149.26229920099922,
       "majority_baseline_accuracy": 0.7242484214494392,
       "majority_baseline_macro_f1": 0.16801486663751639,
       "model_reload_check": "PASS",
-      "model_uri": "models:/m-42fe9568ccaf490186a56ac366c6e423",
-      "run_id": "978e2c9d02e0494195e9989a3222fd9d",
+      "model_uri": "models:/m-af71b692346c4918ae4eadc9df330de6",
+      "run_id": "376d762990d44d59af5080825e9be19a",
       "validation_accuracy": 0.8985823336968375,
       "validation_log_loss": 0.30800558882194073,
       "validation_macro_f1": 0.8297052800781769
     },
     "logistic_regression": {
-      "fit_and_validation_seconds": 109.03441946099974,
+      "fit_and_validation_seconds": 95.88957214999937,
       "majority_baseline_accuracy": 0.7242484214494392,
       "majority_baseline_macro_f1": 0.16801486663751639,
       "model_reload_check": "PASS",
-      "model_uri": "models:/m-d5fc2cf8cf65485a9bab698a9182f8bc",
-      "run_id": "362a8cdd0f99463d8021163b43d55554",
+      "model_uri": "models:/m-9d8cb1f378d745af97806dd1487ed7c0",
+      "run_id": "cb42495866dd4b89921579007474d27b",
       "validation_accuracy": 0.8752776768043944,
       "validation_log_loss": 0.38208632920463975,
       "validation_macro_f1": 0.8169392519198748

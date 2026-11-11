@@ -1,7 +1,7 @@
 {
   "deduplication": "complaint ID and case-insensitive whitespace-normalized text",
-  "duration_seconds": 24.2,
-  "input_rows_per_second": 93202.47,
+  "duration_seconds": 23.411,
+  "input_rows_per_second": 96341.28,
   "sources": {
     "cfpb_2024_04_07.zip": {
       "candidate_rows": 265014,

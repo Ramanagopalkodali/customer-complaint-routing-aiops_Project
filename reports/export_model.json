@@ -2,12 +2,12 @@
   "bundle": "artifacts/serving",
   "class_check": "PASS",
   "model_name": "linear_svc_calibrated",
-  "policy_sha256": "aafe6eb39ebf728238381bbae40cde41facb50fb0c9ce4060e45fee2fb117784",
+  "policy_sha256": "56a5f87cd119f4483175d8e37ba2397bef406fc42878dafaa505648c11be5bc3",
   "prediction_equivalence": "PASS",
   "probability_equivalence": "PASS",
   "retraining_performed": false,
   "smoke_examples": 5,
-  "source_model_sha256": "176e26dd60e239681f15121b285530fd5b853d0a1b0bf0a13adef98f3aa20977",
+  "source_model_sha256": "da6aee1dd9809a18bacc0f6075b48cd2b198513e0bf391343f9e83c626608c60",
   "status": "PASS",
-  "training_run_id": "978e2c9d02e0494195e9989a3222fd9d"
+  "training_run_id": "376d762990d44d59af5080825e9be19a"
 }

@@ -1,0 +1,55 @@
+{
+  "git": {
+    "exit_code": 0,
+    "stdout": "## main...origin/main\n?? .vscode/",
+    "stderr": ""
+  },
+  "commit": "298fea690b77a24a4a082565cc0996b9e4c77b56",
+  "missing_pipeline_files": [],
+  "pipeline_fingerprint": "65ffa27703eb4f1f40f7105519f0e78f8cf93dbd60065a187ab9768d1f48dd51",
+  "matches_supplied_pipeline": true,
+  "all_raw_archives_present": true,
+  "original_model": "978e2c9d02e0494195e9989a3222fd9d",
+  "candidate_model": "f8d2fa4071174ad3b799a9719ba4697c",
+  "configured_champion": "978e2c9d02e0494195e9989a3222fd9d",
+  "test_files": [
+    "tests/test_backend.py",
+    "tests/test_candidate_acceptance.py",
+    "tests/test_ingest.py",
+    "tests/test_lifecycle_metrics.py",
+    "tests/test_lifecycle_monitoring.py",
+    "tests/test_lifecycle_runner.py",
+    "tests/test_model_bundle.py",
+    "tests/test_pipeline_lifecycle.py",
+    "tests/test_threshold.py"
+  ],
+  "raw_archives": {
+    "cfpb_2024_04_07.zip": {
+      "present": true,
+      "size_MiB": 73.57,
+      "sha256": "c8a6fb0d98287958e2c19b47e1a4211c4e43225d27123a3ca08d730a2b4ae0a5"
+    },
+    "cfpb_2024_08_10.zip": {
+      "present": true,
+      "size_MiB": 68.06,
+      "sha256": "f053000c342bfd08bc6f8f382290f623e34b166cb56760c0726ed15e296a6d74"
+    },
+    "cfpb_2024_11_12.zip": {
+      "present": true,
+      "size_MiB": 50.13,
+      "sha256": "24b3326a954c0edeff33318b157d12eef5a59547f6f274f9236f1ceaba988a74"
+    }
+  },
+  "dvc_status": {
+    "exit_code": 0,
+    "stdout": "{}",
+    "stderr": "WARNING: stage: 'lifecycle_deployment_record' is frozen. Its dependencies are not going to be shown in the status output.\nWARNING: stage: 'lifecycle_final_record' is frozen. Its dependencies are not going to be shown in the status output."
+  },
+  "dvc_remotes": {
+    "exit_code": 0,
+    "stdout": "localstore      /home/ramscp/complaint-routing-dvc-store        (default)",
+    "stderr": ""
+  },
+  "snapshot": "/home/ramscp/complaint-routing-before-rebuild.tar.gz",
+  "snapshot_scope": "Code, configuration, model artifacts, logs and evidence; raw/processed data and the MLflow database are not included."
+}

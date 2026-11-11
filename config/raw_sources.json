@@ -1,0 +1,9 @@
+{
+  "source_page": "https://www.consumerfinance.gov/data-research/consumer-complaints/",
+  "description": "Pinned, previously downloaded CFPB export archives.",
+  "archives": {
+    "cfpb_2024_04_07.zip": "c8a6fb0d98287958e2c19b47e1a4211c4e43225d27123a3ca08d730a2b4ae0a5",
+    "cfpb_2024_08_10.zip": "f053000c342bfd08bc6f8f382290f623e34b166cb56760c0726ed15e296a6d74",
+    "cfpb_2024_11_12.zip": "24b3326a954c0edeff33318b157d12eef5a59547f6f274f9236f1ceaba988a74"
+  }
+}

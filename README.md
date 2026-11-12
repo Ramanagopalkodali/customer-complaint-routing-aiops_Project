@@ -8,6 +8,107 @@ The five products are bank accounts, credit cards, credit reporting, debt
 collection and mortgages. The application makes recommendations; it does not
 create tickets or forward complaints to a real department.
 
+## Repository structure
+
+```text
+customer-complaint-routing-aiops_Project/
+├── backend/                       # FastAPI inference and pipeline evidence API
+│   ├── main.py                    # Endpoints, validation and routing decisions
+│   ├── model_loader.py            # Model loading and integrity checks
+│   ├── pipeline.py                # Pipeline diagram and saved evidence
+│   ├── metrics.py                 # Application and pipeline metrics
+│   └── lifecycle_metrics.py       # Historical lifecycle metrics
+├── frontend/
+│   └── app.py                     # Streamlit single, CSV and pipeline screens
+├── src/                           # Data and model lifecycle implementation
+│   ├── ingest.py                  # Ray ingestion, cleaning and deduplication
+│   ├── train.py                   # Model training and comparison
+│   ├── select_threshold.py        # Category-specific routing thresholds
+│   ├── evaluate.py                # Original-model October evaluation
+│   ├── export_model.py            # Portable original-model package
+│   ├── monitor_lifecycle.py        # Historical drift/performance monitoring
+│   ├── retrain_candidate.py        # Candidate training and threshold selection
+│   ├── accept_candidate.py         # Candidate acceptance gates
+│   ├── package_candidate.py        # Portable candidate package
+│   ├── run_lifecycle.py            # Conditional lifecycle controller
+│   └── evaluate_lifecycle_final.py # Reserved December evaluation
+├── scripts/                       # Reproduction and verification commands
+│   ├── reproduce_baseline.py
+│   ├── reproduce_lifecycle.py
+│   ├── run_final_checks.py
+│   ├── smoke_containers.py
+│   ├── test_mlproject.sh
+│   ├── verify_artifact_recovery.py
+│   ├── verify_recovered_deployment.py
+│   └── verify_lifecycle_deployment.py
+├── tests/                         # Automated unit and integration tests
+├── config/
+│   ├── raw_sources.json           # Pinned source archive hashes
+│   └── lifecycle.json             # Monitoring windows and acceptance settings
+├── data/                          # DVC-managed datasets
+│   ├── raw/
+│   ├── processed/
+│   └── raw.dvc
+├── artifacts/                     # DVC-managed model assets
+│   ├── training/
+│   ├── serving/                   # Original serving bundle
+│   ├── policy.json
+│   └── lifecycle/                 # Drift reference and candidate assets
+├── monitoring/
+│   ├── prometheus.yml
+│   ├── alerts.yml
+│   ├── blackbox.yml
+│   └── grafana/
+│       ├── dashboards/
+│       └── provisioning/
+├── reports/                       # Saved machine-readable results and proofs
+│   ├── training/
+│   ├── threshold/
+│   ├── test/
+│   ├── lifecycle/                 # Monitoring, acceptance and final evaluation
+│   ├── reproduction/              # Replay summaries and generated DAGs
+│   ├── final/                     # Full tests, recovery and backup verification
+│   └── history/
+├── evidence/                      # Screenshots and evidence index
+│   ├── stage7/
+│   └── stage8/
+├── docs/                          # Mandatory and supporting documentation
+│   ├── README.md                  # Documentation index
+│   ├── architecture.md            # Architecture diagram and block explanations
+│   ├── high_level_design.md       # Design choices and rationale
+│   ├── low_level_design.md        # API endpoints and input/output specifications
+│   ├── test_plan_and_report.md    # Test plan, criteria and recorded results
+│   ├── test_cases.md              # Individual automated test cases
+│   ├── user_manual.md             # Non-technical application instructions
+│   ├── workflow_and_files.md      # End-to-end workflow and file responsibilities
+│   ├── rubric_file_map.md         # Rubric-to-code/evidence mapping
+│   ├── rubric_compliance.md       # Question-by-question rubric assessment
+│   ├── development_guidelines.md
+│   ├── proposal_compliance.md
+│   ├── model_development.md
+│   ├── deployment.md
+│   ├── handoff_verification.md
+│   ├── audit_findings.md
+│   └── references.md
+├── demo_inputs/                   # Valid and invalid example CSVs
+├── logs/                          # Runtime logs and fixed replay transcripts
+├── mlruns/                        # Local MLflow artifacts; excluded from Git
+├── mlflow.db                      # Local MLflow database; excluded from Git
+├── Dockerfile                     # Backend/frontend image targets
+├── compose.yaml                   # Application and monitoring services
+├── compose.override.yaml          # Configurable serving-bundle mount
+├── MLproject                      # Docker-backed MLproject test entry
+├── dvc.yaml                       # Pipeline stage definitions
+├── dvc.lock                       # Recorded dependency/output hashes
+├── requirements.txt
+├── requirements.lock.txt
+└── README.md
+```
+
+Model binaries and datasets are restored through DVC. MLflow history is supplied
+separately through the shared artifact archives. Runtime caches and individual
+generated files are omitted from this overview.
+
 ## Recorded result
 
 The supplied VM replay completed successfully on 12 November 2026 IST:

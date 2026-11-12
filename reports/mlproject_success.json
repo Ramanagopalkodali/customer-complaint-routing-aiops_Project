@@ -1,8 +1,19 @@
 {
   "status": "PASS",
-  "run_id": "57eaac6f73664187b247c550bee667d7",
-  "tests_passed": 16,
+  "tests_passed": 18,
   "tests_failed": 0,
+  "counts": {
+    "total": 18,
+    "passed": 18,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
   "report": "reports/mlproject_backend_tests.xml",
-  "execution": "Backend Docker image with project mounted at /app"
+  "report_sha256": "400b5aa4cc7e635795c85756fcd55654c30f6b2e493bee2717f3dda056200237",
+  "git_commit": "0d4054dda2d851e32be100da4634af32d88f7e0c",
+  "original_training_run_id": "376d762990d44d59af5080825e9be19a",
+  "execution": "Current backend Docker image with project mounted at /app; original serving bundle",
+  "completed_at": "2026-11-12T00:29:01.855871+00:00",
+  "run_id": "3a4d8c99e2c14e0c9512c6628e722373"
 }

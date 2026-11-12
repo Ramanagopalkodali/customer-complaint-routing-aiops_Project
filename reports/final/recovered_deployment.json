@@ -1,8 +1,8 @@
 {
   "status": "PASS",
-  "checkout": "/home/ramscp/complaint-routing-recovery-checks/checkout_jtq800dw",
+  "checkout": "/home/ramscp/complaint-routing-recovery-checks/checkout_zq24vlhv",
   "scope": "Recovered-checkout Docker build and HTTP smoke verification",
-  "expected_model_version": "f8d2fa4071174ad3b799a9719ba4697c",
+  "expected_model_version": "caa8bd53da5f4fb1871725b08a80ec70",
   "ports": {
     "backend": 8002,
     "frontend": 8502
@@ -10,7 +10,7 @@
   "images_built_from_recovered_checkout": true,
   "backend_health": {
     "status": "ok",
-    "model_version": "f8d2fa4071174ad3b799a9719ba4697c"
+    "model_version": "caa8bd53da5f4fb1871725b08a80ec70"
   },
   "single_prediction": "PASS",
   "invalid_input_status": 422,

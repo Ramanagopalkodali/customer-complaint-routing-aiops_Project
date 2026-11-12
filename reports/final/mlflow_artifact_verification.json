@@ -1,9 +1,33 @@
 {
   "status": "PASS",
-  "models_checked": 3,
+  "models_checked": 6,
   "checks": [
     {
       "model_directory": "mlruns/1/models/m-42fe9568ccaf490186a56ac366c6e423/artifacts",
+      "status": "PASS",
+      "prediction_examples": 2,
+      "classes": [
+        "bank_account",
+        "credit_card",
+        "credit_reporting",
+        "debt_collection",
+        "mortgage"
+      ]
+    },
+    {
+      "model_directory": "mlruns/1/models/m-9d8cb1f378d745af97806dd1487ed7c0/artifacts",
+      "status": "PASS",
+      "prediction_examples": 2,
+      "classes": [
+        "bank_account",
+        "credit_card",
+        "credit_reporting",
+        "debt_collection",
+        "mortgage"
+      ]
+    },
+    {
+      "model_directory": "mlruns/1/models/m-af71b692346c4918ae4eadc9df330de6/artifacts",
       "status": "PASS",
       "prediction_examples": 2,
       "classes": [
@@ -27,6 +51,18 @@
       ]
     },
     {
+      "model_directory": "mlruns/2/models/m-a61d23fb257c4261bff57921f7478ba3/artifacts",
+      "status": "PASS",
+      "prediction_examples": 2,
+      "classes": [
+        "bank_account",
+        "credit_card",
+        "credit_reporting",
+        "debt_collection",
+        "mortgage"
+      ]
+    },
+    {
       "model_directory": "mlruns/2/models/m-f7a3e08b63ac4cd8a116dc6ffda4ac8c/artifacts",
       "status": "PASS",
       "prediction_examples": 2,
@@ -39,7 +75,7 @@
       ]
     }
   ],
-  "scope": "Direct loading and inference from backed-up model packages",
+  "scope": "Direct inference from the copied MLflow model packages",
   "tracking_database_paths_relocated": false,
   "off_machine_backup": false
 }

@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "source_commit": "0d4054dda2d851e32be100da4634af32d88f7e0c",
+  "selected_training_run_id": "caa8bd53da5f4fb1871725b08a80ec70",
+  "archives": {
+    "dvc_store": {
+      "path": "/home/ramscp/complaint-routing-handoff/complaint-routing-dvc-store.tar.gz",
+      "sha256": "00a2c9c13f10a18038aa41733e4ac3326b7051314a5ed1a49a75c85ee6a9851d",
+      "files_verified": 46,
+      "bytes": 330568914,
+      "all_file_hashes_match": true
+    },
+    "mlflow_snapshot": {
+      "path": "/home/ramscp/complaint-routing-handoff/complaint-routing-mlflow-current.tar.gz",
+      "sha256": "3249f67762f692c17379d9d143e73074e8587b3e5d27f6abbd9b89f02afa950f",
+      "files_verified": 114,
+      "bytes": 20546525,
+      "all_file_hashes_match": true
+    }
+  },
+  "off_machine_backup": false,
+  "scope": "Verified archives prepared inside the VM; copy/share them separately",
+  "completed_at": "2026-11-12T00:29:15.035969+00:00"
+}

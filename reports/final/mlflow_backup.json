@@ -1,9 +1,22 @@
 {
+  "format": "complaint-routing-mlflow-snapshot-v1",
   "status": "PASS",
-  "backup_directory": "/home/ramscp/complaint-routing-mlflow-backups/20261110T220158426987Z",
+  "backup_directory": "/home/ramscp/complaint-routing-mlflow-backups/current",
+  "saved_run_count": 19,
+  "artifact_files": 112,
+  "models_checked": 6,
+  "current_training_run_ids_present": [
+    "376d762990d44d59af5080825e9be19a",
+    "caa8bd53da5f4fb1871725b08a80ec70"
+  ],
+  "current_logged_model_ids_present": [
+    "m-a61d23fb257c4261bff57921f7478ba3",
+    "m-af71b692346c4918ae4eadc9df330de6"
+  ],
   "database_integrity": "ok",
-  "saved_run_count": 10,
-  "artifact_files": 56,
-  "scope": "Same-VM MLflow snapshot; original artifact paths may require restoration",
-  "off_machine_backup": false
+  "artifact_hashes_verified": true,
+  "database_sha256": "f63d5ed4162797fb8be4bb717e1a6cb29a070dc965d33b3fb9a9614754e96703",
+  "off_machine_backup": false,
+  "tracking_database_paths_relocated": false,
+  "completed_at": "2026-11-12T00:29:03.525882+00:00"
 }

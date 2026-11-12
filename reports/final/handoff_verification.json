@@ -1,0 +1,121 @@
+{
+  "status": "PASS",
+  "started_at": "2026-11-12T00:28:21.807061+00:00",
+  "scope": "Current-model DVC recovery, MLproject tests and MLflow backup",
+  "retraining_performed": false,
+  "off_machine_backup": false,
+  "steps": [
+    {
+      "name": "Checking committed recovery inputs",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 0.004
+    },
+    {
+      "name": "Checking source checkpoint",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 0.002
+    },
+    {
+      "name": "Reading source commit",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 0.003
+    },
+    {
+      "name": "Checking Docker access",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 0.096
+    },
+    {
+      "name": "Configuring the same-VM DVC store",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 0.293
+    },
+    {
+      "name": "Checking DVC freshness",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 0.47
+    },
+    {
+      "name": "Pushing current DVC objects",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 0.517
+    },
+    {
+      "name": "Verifying empty-cache recovery",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 13.636
+    },
+    {
+      "name": "Verifying recovered Docker deployment",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 16.982
+    },
+    {
+      "name": "Building current backend image for MLproject",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 0.501
+    },
+    {
+      "name": "Running Docker-backed MLproject tests",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_seconds": 7.532
+    }
+  ],
+  "source_commit": "0d4054dda2d851e32be100da4634af32d88f7e0c",
+  "original_training_run_id": "376d762990d44d59af5080825e9be19a",
+  "selected_training_run_id": "caa8bd53da5f4fb1871725b08a80ec70",
+  "mlflow_backup": {
+    "format": "complaint-routing-mlflow-snapshot-v1",
+    "status": "PASS",
+    "backup_directory": "/home/ramscp/complaint-routing-mlflow-backups/current",
+    "saved_run_count": 19,
+    "artifact_files": 112,
+    "models_checked": 6,
+    "current_training_run_ids_present": [
+      "376d762990d44d59af5080825e9be19a",
+      "caa8bd53da5f4fb1871725b08a80ec70"
+    ],
+    "current_logged_model_ids_present": [
+      "m-a61d23fb257c4261bff57921f7478ba3",
+      "m-af71b692346c4918ae4eadc9df330de6"
+    ],
+    "database_integrity": "ok",
+    "artifact_hashes_verified": true,
+    "database_sha256": "f63d5ed4162797fb8be4bb717e1a6cb29a070dc965d33b3fb9a9614754e96703",
+    "off_machine_backup": false,
+    "tracking_database_paths_relocated": false,
+    "completed_at": "2026-11-12T00:29:03.525882+00:00"
+  },
+  "mlproject_tests": {
+    "status": "PASS",
+    "tests_passed": 18,
+    "tests_failed": 0,
+    "counts": {
+      "total": 18,
+      "passed": 18,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "report": "reports/mlproject_backend_tests.xml",
+    "report_sha256": "400b5aa4cc7e635795c85756fcd55654c30f6b2e493bee2717f3dda056200237",
+    "git_commit": "0d4054dda2d851e32be100da4634af32d88f7e0c",
+    "original_training_run_id": "376d762990d44d59af5080825e9be19a",
+    "execution": "Current backend Docker image with project mounted at /app; original serving bundle",
+    "completed_at": "2026-11-12T00:29:01.855871+00:00",
+    "run_id": "3a4d8c99e2c14e0c9512c6628e722373"
+  },
+  "archive_directory": "/home/ramscp/complaint-routing-handoff",
+  "completed_at": "2026-11-12T00:29:15.036235+00:00"
+}

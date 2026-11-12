@@ -42,3 +42,5 @@ Docker, DVC or monitoring files, creates no new setup scripts, moves no images
 and runs no training. Retain a copy of replaced documents outside the repository
 if you want a pre-update snapshot. The current screen is documented as an
 interactive evidence console with execution through existing CLI commands.
+
+Latest post-audit status: [handoff verification](handoff_verification.md).

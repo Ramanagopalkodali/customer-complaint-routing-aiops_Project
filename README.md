@@ -433,3 +433,5 @@ git diff --cached --stat
 Then commit/push the reviewed documentation. A frontend redesign can be done
 separately; update the user manual and UI screenshots if labels or workflows
 change. No frontend redesign is included in these files.
+
+Latest post-audit status: [handoff verification](docs/handoff_verification.md).

@@ -22,3 +22,10 @@ Machine evidence: [verification](../reports/final/handoff_verification.json), [a
 Archives are outside Git, under `~/complaint-routing-handoff/`. They have been prepared inside the VM. Copy them to the host/USB or share them with the evaluator separately; off-machine transfer has not been verified by this script. Tracking DB artifact paths are not relocated; direct copied-package inference was checked.
 
 The MLproject cases overlap the complete 77-case suite and must not be added to its total. No training or December reevaluation ran. Screenshots and the recording are separate presentation tasks.
+
+## Artifact distribution
+
+[Shared artifact folder](https://drive.google.com/drive/folders/1KHOP9f8lswEbXwzxMYLv2oAKEw8zBRI4?usp=sharing).
+
+The owner confirmed that all four files are visible and downloadable.
+Archive checksums are provided in SHA256SUMS.txt and handoff_manifest.json.

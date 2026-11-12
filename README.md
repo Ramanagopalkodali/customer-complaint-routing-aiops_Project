@@ -435,3 +435,26 @@ separately; update the user manual and UI screenshots if labels or workflows
 change. No frontend redesign is included in these files.
 
 Latest post-audit status: [handoff verification](docs/handoff_verification.md).
+
+## Model, data and tracking artifacts
+
+[Download the artifact archives](https://drive.google.com/drive/folders/1KHOP9f8lswEbXwzxMYLv2oAKEw8zBRI4?usp=sharing).
+
+The folder contains:
+- complaint-routing-dvc-store.tar.gz
+- complaint-routing-mlflow-current.tar.gz
+- SHA256SUMS.txt
+- handoff_manifest.json
+
+Download all four files into the same directory.
+
+From that directory, verify both archives:
+
+    sha256sum -c SHA256SUMS.txt
+
+Extract the DVC store into your home directory:
+
+    tar -xzf complaint-routing-dvc-store.tar.gz -C "$HOME"
+
+Then follow this README's clone, DVC restoration and startup instructions.
+The MLflow archive contains tracking history and is not required for inference.
